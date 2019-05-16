@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "950033644712",
+    "firebase_url": "https://vaccins-61b05.firebaseio.com",
+    "project_id": "vaccins-61b05",
+    "storage_bucket": "vaccins-61b05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950033644712:android:101e79c8df6f26de",
+        "android_client_info": {
+          "package_name": "com.tarek.vaccins"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "950033644712-ildd24a3uo0r6ibd65dq3ds05i77fl2o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tarek.vaccins",
+            "certificate_hash": "2ce207c2eb88fdcdf6d3cdb42556dea9e8a862ef"
+          }
+        },
+        {
+          "client_id": "950033644712-49h5vm2e235q8pj6tqrimpdk891ebq8o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiKBGSizvwfrJzCTbT-1g6VfR8iGoaI50"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "950033644712-49h5vm2e235q8pj6tqrimpdk891ebq8o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

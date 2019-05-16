@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".register.InfoAdressActivity">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_from_details_register"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_keyboard_arrow_left_black"
+            />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type de pièce"
+            android:textSize="17dp"
+            android:textColor="@color/black"
+            />
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/spinner_identity_type"
+            android:background="@drawable/ic_edittextstyle"
+            android:drawablePadding="20dp"
+            android:layout_marginTop="10dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/edt_lastname"
+            android:hint="Numéro de pièce"
+            android:inputType="phone"
+            android:drawableLeft="@drawable/ic_carte"
+            android:background="@drawable/ic_edittextstyle"
+            android:drawablePadding="20dp"
+            android:layout_marginTop="10dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="adresse "
+            android:textSize="17dp"
+            android:textColor="@color/black"
+            />
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/spinner_wilaya"
+            android:background="@drawable/ic_edittextstyle"
+            android:drawablePadding="20dp"
+            android:layout_marginTop="10dp"
+            />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/spinner_commune"
+            android:background="@drawable/ic_edittextstyle"
+            android:drawablePadding="20dp"
+            android:layout_marginTop="10dp"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        >
+
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_register"
+            android:layout_gravity="center"
+            android:text="S'inscrire"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_gradient_style" />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Vaccins</string>
+    <string name="se_conencter">Se Connecter</string>
+    <string name="msg_connection"> Veuillez saisir votre adresse courriel et votre mot de passe</string>
+    <string name="email">EMAIL</string>
+    <string name="password">MOT DE PASSE</string>
+    <string name="confirm_password">Confirmer mot de passe</string>
+    <string name="msg_under_password">Demander un mot de passe pour déverrouiller l application</string>
+    <string name="msg_info">Si vous activez ce paramétres, vous devrez saisir votre mot de passe à chaque fois que vous ouvrez l application</string>
+    <string name="msg_forget_password">Mot de passe oublié?</string>
+    <string name="msg_new_Account">Créer un compte </string>
+    <string name="msg_new_Account_continue">CREER UN COMPTE ET CONTINUER</string>
+    <string name="name">Nom</string>
+    <string name="msg_password_info">Le mot de passe doit contenir entre 6 et 20 caractères avec au moins un chiffre, une lettre miniscule et une lettre majuscule </string>
+    <string name="sigin">S inscrire</string>
+
+</resources>

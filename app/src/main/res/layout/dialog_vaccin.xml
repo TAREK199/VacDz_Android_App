@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" 
+    android:layout_width="350dp"
+    android:layout_height="700dp"
+    android:id="@+id/linear_dialog"
+    android:layout_gravity="center"
+    >
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_vaccin_name_dialogue"
+            android:textColor="@color/black"
+            android:text="TITANOS"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/txt_vaccin_description_dialogue"
+            android:textSize="15dp"
+            android:text="djfdjqfj kqdkfkqdf kqksfmqskf ksmfkqsmf jjsfksqkf jposfskqfkqskfsqkf isdjsqjd jjqfjqsjfskfksf fsflksksdk kskqfksqdksdksj  "
+
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout>

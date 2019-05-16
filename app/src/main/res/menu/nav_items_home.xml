@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home_health_espace"
+        android:icon="@drawable/ic_home_white_24dp"
+        android:title="ESPACE SANTE" />
+    <item
+        android:id="@+id/nav_home_childrens"
+        android:icon="@drawable/ic_child_white"
+        android:title="MES ENFANTS" />
+    <item
+        android:id="@+id/nav_home_appoinment"
+        android:icon="@drawable/ic_apponment"
+        android:title="RENDEZ-VOUS" />
+    <item
+        android:id="@+id/nav_home_father_profile"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="MY PROFILE" />
+</menu>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tarek.vaccins">
+
+    <application
+        android:name=".notification.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".home.VaccinInfosActivity"></activity>
+        <activity android:name=".home.SettingActivity" />
+        <activity android:name=".notification.NotificationActivity" />
+        <activity android:name=".edit.EditFatherProfile" />
+        <activity android:name=".register.PhoneRegisterActivity" />
+        <activity android:name=".polyclinic.PolyclincProfileActivity" />
+        <activity android:name=".notification.TestNotification" />
+        <activity android:name=".polyclinic.PolyclinicActivity" />
+        <activity android:name=".records.VaccinActivity" />
+        <activity android:name=".records.RecordsActivity" />
+        <activity android:name=".register.InfoAdressActivity" >
+
+
+
+        </activity>
+        <activity android:name=".register.RegisterActivity" >
+
+
+        </activity>
+        <activity android:name=".register.InfosActivity" />
+        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".register.WelcomeActivity" >
+
+
+        </activity>
+        <activity android:name=".register.IntroActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity android:name=".home.HomeActivity" >
+
+
+
+
+        </activity>
+
+        <receiver android:name=".notification.NotificationReceiver" />
+    </application>
+
+</manifest>
