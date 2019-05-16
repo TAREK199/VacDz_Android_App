@@ -45,7 +45,7 @@ public class ChildrensFragment extends Fragment {
 
 
     //    getEnfants();
-       //  viewData();
+         viewData();
 
         return view;
     }
