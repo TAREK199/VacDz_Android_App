@@ -1,18 +1,33 @@
 package com.tarek.vaccins.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Vaccin {
 
+    @SerializedName("vaccin")
+    @Expose
+    private String vaccin;
+    @SerializedName("value")
+    @Expose
+    private Integer value;
 
-    private  String vaccinName;
-
-    public Vaccin(String name) {
-        this.vaccinName = name;
+    public String getVaccin() {
+        return vaccin;
     }
 
-
-    public String getVaccinName() {
-        return vaccinName;
+    public void setVaccin(String vaccin) {
+        this.vaccin = vaccin;
     }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public void setValue(Integer value) {
+        this.value = value;
+    }
+
 
 
 }

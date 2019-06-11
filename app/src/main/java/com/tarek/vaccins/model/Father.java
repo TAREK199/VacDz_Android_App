@@ -6,99 +6,196 @@ import com.google.gson.annotations.SerializedName;
 
 public class Father {
 
-    @SerializedName("id")
+    @SerializedName("document")
     @Expose
-    private int fatherId ;
-/*
-    @SerializedName("id")
-    @Expose
-    private String firstName ;
-*/
-
-    @SerializedName("prenom")
-    @Expose
-    private String lastName ;
+    private String document;
 
     @SerializedName("email")
     @Expose
-    private String email ;
+    private String email;
 
     @SerializedName("password")
     @Expose
-    private String password ;
+    private String password;
 
-    @SerializedName("document")
+    @SerializedName("nom")
     @Expose
-    private int documentType ;
+    private String nom;
 
+    @SerializedName("prenom")
+    @Expose
+    private String prenom;
     @SerializedName("tel1")
     @Expose
-    private String phone_1 ;
+    private String tel1;
+
+    @SerializedName("tel2")
+    @Expose
+    private String tel2;
 
     @SerializedName("adresse")
     @Expose
-    private String wilaya ;
+    private String wilaya;
 
     @SerializedName("commune_id")
     @Expose
-    private int commune ;
+    private String communeId;
 
-    @SerializedName("success")
+
+    @SerializedName("id")
     @Expose
-    private String message;
+    private Integer id;
+    @SerializedName("user_id")
+    @Expose
+    private Integer userId;
+    @SerializedName("updated_at")
+    @Expose
+    private String updatedAt;
+    @SerializedName("created_at")
+    @Expose
+    private String createdAt;
 
 
-    public Father(int fatherId,  String lastName, String email,String password, int documentType, String phone_1, String wilaya, int commune) {
-        this.fatherId = fatherId;
-     //   this.firstName = firstName;
-        this.lastName = lastName;
+    public Father(String document, Integer id, String email,String prenom, String password,String tel1,String wilaya, String communeId) {
+        this.document = document;
         this.email = email;
         this.password = password;
-        this.documentType = documentType;
-        this.phone_1 = phone_1;
+        this.prenom = prenom;
+        this.tel1 = tel1;
         this.wilaya = wilaya;
-        this.commune = commune;
+        this.communeId = communeId;
+        this.id = id;
+    }
+
+    public Father(String document, String email, String password, String nom, String prenom, String tel1, String wilaya, String communeId, Integer id) {
+        this.document = document;
+        this.email = email;
+        this.password = password;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.tel1 = tel1;
+        this.wilaya = wilaya;
+        this.communeId = communeId;
+        this.id = id;
     }
 
 
-    public int getFatherId() {
-        return fatherId;
-    }
-/*
-    public String getFirstName() {
-        return firstName;
-    }
-*/
+    public Father(String firstNameChar, String lastnameChar, String adresseChar, String phoneNmbr1Char, String phoneNbr2Char, int identityNumberChar) {
 
-    public String getLastName() {
-        return lastName;
+    this.nom = firstNameChar ;
+    this.prenom = lastnameChar ;
+    this.wilaya = adresseChar ;
+    this.tel1 = phoneNmbr1Char ;
+    this.tel2 = phoneNbr2Char ;
+    this.id = identityNumberChar ;
+    }
+
+
+    public Father(int identityNumber, String email, String firstNameChar, String lastnameChar, String phoneNmbr1Char, String phoneNbr2Char, String adresseChar, String communeId) {
+
+        this.id = identityNumber ;
+        this.email = email;
+        this.nom = firstNameChar ;
+        this.prenom = lastnameChar ;
+        this.wilaya = adresseChar ;
+        this.tel1 = phoneNmbr1Char ;
+        this.tel2 = phoneNbr2Char ;
+        this.communeId = communeId;
+
+    }
+
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getTel1() {
+        return tel1;
+    }
+
+    public void setTel1(String tel1) {
+        this.tel1 = tel1;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getPassword() {
-        return password;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public int getDocumentType() {
-        return documentType;
+    public String getTel2() {
+        return tel2;
     }
 
-    public String getPhone_1() {
-        return phone_1;
+    public void setTel2(String tel2) {
+        this.tel2 = tel2;
     }
 
     public String getWilaya() {
         return wilaya;
     }
 
-    public int getCommune() {
-        return commune;
+    public void setWilaya(String wilaya) {
+        this.wilaya = wilaya;
     }
 
-    public String getMessage() {
-        return message;
+    public String getCommuneId() {
+        return communeId;
     }
+
+    public void setCommuneId(String communeId) {
+        this.communeId = communeId;
+    }
+
+    public Integer getFatherId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
 }
+
+
+
+
+
+

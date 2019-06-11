@@ -15,6 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/txt_children_name_profile"
             android:layout_gravity="center"
             android:layout_margin="60dp"
             android:text="REBAI TAREK"
@@ -69,6 +70,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
+                    android:id="@+id/txt_birth_place_children_profile"
                     android:text="Sétif"
                     android:textSize="20dp"
                     android:layout_marginLeft="10dp"
@@ -94,6 +96,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
+                    android:id="@+id/txt_birth_date_children_profile"
                     android:text="10/07/2018"
                     android:textSize="20dp"
                     android:layout_marginLeft="10dp"
@@ -120,6 +123,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
+                    android:id="@+id/txt_sexe_children_profile"
                     android:text="Masculin"
                     android:textSize="20dp"
                     android:layout_marginLeft="10dp"

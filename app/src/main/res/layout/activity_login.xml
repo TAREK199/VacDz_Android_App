@@ -57,7 +57,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/edit_username_seller"
+                android:id="@+id/edit_email_login"
+                android:inputType="textEmailAddress"
                 android:hint="EMAIL"
                 android:drawableLeft="@drawable/ic_person_black_24dp"
                 android:background="@drawable/ic_edittextstyle"
@@ -68,7 +69,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/edit_password_seller"
+                android:id="@+id/edit_password_login"
                 android:hint="MOT DE PASSE"
                 android:layout_marginTop="15dp"
                 android:inputType="textPassword"

@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:background="@color/black"
+        android:background="@color/blue"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -25,7 +25,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="330dp"
-        android:layout_height="250dp"
+        android:layout_height="450dp"
         android:id="@+id/card_edit_father_profile"
         android:layout_marginTop="160dp"
         android:layout_centerHorizontal="true"
@@ -47,8 +47,24 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/edit_father_lastname"
+                    android:id="@+id/edt_edit_profile_firsttname"
                     android:hint="Noioua"
+                    android:drawableLeft="@drawable/ic_person_black_24dp"
+                    android:drawablePadding="30dp"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="310dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                >
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/edt_edit_profile_lastname"
+                    android:hint="adel"
                     android:drawableLeft="@drawable/ic_person_black_24dp"
                     android:drawablePadding="30dp"
 
@@ -64,24 +80,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/edit_father_adresse"
-
-                    android:hint="Rouiba Alger"
-                    android:drawableLeft="@drawable/ic_location"
-                    android:drawablePadding="30dp"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="310dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                >
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/edit_father_phone1"
+                    android:id="@+id/edit_edit_profile_phone1"
                     android:hint="0699289437"
                     android:drawableLeft="@drawable/ic_phone"
                     android:drawablePadding="30dp"
@@ -98,26 +97,51 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/edit_father_phone2"
-                    android:hint="0559515058"
+                    android:id="@+id/edit_edit_profile_phone2"
+                    android:hint="0000 00 00 00"
                     android:drawableLeft="@drawable/ic_phone"
                     android:drawablePadding="30dp"
                     />
             </LinearLayout>
 
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="310dp"
                 android:layout_height="50dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 >
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="idendity number"
-                    android:drawableLeft="@drawable/ic_person_black_24dp"
+                    android:id="@+id/edt_edit_profile_adresse"
+                    android:hint="Rouiba Alger"
+                    android:drawableLeft="@drawable/ic_location"
                     android:drawablePadding="30dp"
                     />
             </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="310dp"
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/txt_edit_profile_identity"
+
+                    android:textSize="19dp"
+                    android:gravity="center"
+                    android:hint="Rouiba Alger"
+                    android:drawablePadding="30dp"
+                    />
+            </LinearLayout>
+
+
 
 
 

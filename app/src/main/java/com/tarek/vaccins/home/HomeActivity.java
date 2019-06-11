@@ -12,11 +12,22 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.synnapps.carouselview.CarouselView;
 import com.tarek.vaccins.R;
+import com.tarek.vaccins.RetrofitInstance;
+import com.tarek.vaccins.SharedPrefManager;
+import com.tarek.vaccins.model.DataFromDeviceToken;
 import com.tarek.vaccins.model.HealthSpace;
 import com.tarek.vaccins.notification.NotificationActivity;
+import com.tarek.vaccins.response.DeviceTokenResponse;
+import com.tarek.vaccins.response.FatherResponse;
+import com.tarek.vaccins.service.FatherService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -26,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
     private HealthSpaceFragment healthSpaceFragment;
     private RDVFragment rdvFragment ;
     private FatherProfileFragment fatherProfileFragment ;
+    private SharedPrefManager sharedPrefManager ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +46,8 @@ public class HomeActivity extends AppCompatActivity {
 
         frameLayout = findViewById(R.id.frame_home);
         navigationMenu = findViewById(R.id.bottomnav_home_nav);
+
+        sharedPrefManager = new SharedPrefManager(HomeActivity.this);
 
         findViewById(R.id.img_to_settings).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +97,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
+              sendDeviceToken();
     }
     public void setFragment(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -91,5 +105,39 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+
+    public void sendDeviceToken(){
+
+        String deviceToken = sharedPrefManager.getFireBaseToken();
+        String token = sharedPrefManager.getToken();
+
+        Toast.makeText(HomeActivity.this,"devicetoken : "+deviceToken,Toast.LENGTH_LONG).show();
+        Toast.makeText(HomeActivity.this,"token : "+token,Toast.LENGTH_LONG).show();
+
+
+        FatherService fatherService = RetrofitInstance.fatherInstance();
+
+        fatherService.storeFireBaseToken("Bearer "+token,deviceToken).enqueue(new Callback<DeviceTokenResponse>() {
+            @Override
+            public void onResponse(Call<DeviceTokenResponse> call, Response<DeviceTokenResponse> response) {
+
+
+                Boolean success = response.body().getSuccess();
+
+                Toast.makeText(HomeActivity.this,"suxxes : "+success,Toast.LENGTH_LONG).show();
+                Toast.makeText(HomeActivity.this,"error body : "+response.message(),Toast.LENGTH_LONG).show();
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<DeviceTokenResponse> call, Throwable t) {
+                Toast.makeText(HomeActivity.this,"problem : "+t.getMessage(),Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+    }
 
 }

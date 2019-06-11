@@ -6,14 +6,17 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 import com.tarek.vaccins.R;
+import com.tarek.vaccins.SharedPrefManager;
 import com.tarek.vaccins.model.HealthSpace;
 
 import java.util.ArrayList;
@@ -28,6 +31,9 @@ public class HealthSpaceFragment extends Fragment {
     private CarouselView carouselView ;
     int[] sampleImage = {R.drawable.img10, R.drawable.img12, R.drawable.img13, R.drawable.img14, R.drawable.img15};
 
+    SharedPrefManager sharedPrefManager ;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,6 +44,16 @@ public class HealthSpaceFragment extends Fragment {
 
         carouselView.setPageCount(sampleImage.length);
         carouselView.setImageListener(imageListener);
+
+        sharedPrefManager = new SharedPrefManager(getActivity());
+
+
+        String tok = sharedPrefManager.getFireBaseToken();
+
+      //  Toast.makeText(getActivity(),"firebase token : "+tok,Toast.LENGTH_LONG).show();
+
+//        Log.d("my firebase token",tok);
+
 
         viewData();
         return view;

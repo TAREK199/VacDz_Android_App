@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tarek.vaccins.R;
+import com.tarek.vaccins.SharedPrefManager;
 import com.tarek.vaccins.model.Children;
 import com.tarek.vaccins.records.RecordsActivity;
 
@@ -22,6 +23,7 @@ public class ChildrensAdapter  extends RecyclerView.Adapter<ChildrensAdapter.MyV
 
     private Context context;
     List<Children> childrensList ;
+    SharedPrefManager sharedPrefManager ;
 
     public ChildrensAdapter(Context context ,List<Children> childrensList){
         this.context = context;
@@ -40,14 +42,20 @@ public class ChildrensAdapter  extends RecyclerView.Adapter<ChildrensAdapter.MyV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolderChildrens holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolderChildrens holder, final int position) {
 
-        holder.childName.setText((CharSequence) childrensList.get(position).getLastName());
+
+        sharedPrefManager = new SharedPrefManager(context);
+
+        holder.childName.setText((CharSequence) childrensList.get(position).getPrenom());
+
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 context.startActivity(new Intent(context, RecordsActivity.class));
+                sharedPrefManager.childAccess(childrensList.get(position).getId());
+
             }
         });
     }
@@ -60,7 +68,7 @@ public class ChildrensAdapter  extends RecyclerView.Adapter<ChildrensAdapter.MyV
 
     public static class MyViewHolderChildrens extends RecyclerView.ViewHolder{
 
-        private TextView childName;
+        private TextView childName,childID;
         private CardView cardView ;
 
 
@@ -68,6 +76,7 @@ public class ChildrensAdapter  extends RecyclerView.Adapter<ChildrensAdapter.MyV
 
             super(itemView);
             childName = itemView.findViewById(R.id.txt_child_name);
+            childID = itemView.findViewById(R.id.txt_child_id);
             cardView = itemView.findViewById(R.id.card_children_record);
 
         }

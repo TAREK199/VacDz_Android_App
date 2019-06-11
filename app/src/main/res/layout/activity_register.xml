@@ -52,6 +52,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/edt_email"
             android:hint="@string/email"
+            android:inputType="textEmailAddress"
             android:drawableLeft="@drawable/ic_mail"
             android:background="@drawable/ic_edittextstyle"
             android:drawablePadding="20dp"
@@ -64,6 +65,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/edt_password_register"
             android:hint="@string/password"
+            android:inputType="textPassword"
             android:drawableLeft="@drawable/ic_password"
             android:background="@drawable/ic_edittextstyle"
             android:drawablePadding="20dp"
@@ -72,10 +74,11 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/edit_username_seller"
+            android:id="@+id/edit_confirm_password"
             android:hint="@string/confirm_password"
             android:drawableLeft="@drawable/ic_password"
             android:background="@drawable/ic_edittextstyle"
+            android:inputType="textPassword"
             android:drawablePadding="20dp"
             android:layout_marginTop="10dp"/>
 

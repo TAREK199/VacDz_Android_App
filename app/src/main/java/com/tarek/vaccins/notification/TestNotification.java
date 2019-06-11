@@ -62,7 +62,6 @@ public class TestNotification extends AppCompatActivity {
 
         notificationManager.notify(1, notification);
     }
-
     public void sendOnChannel2(View v) {
         String title = editTextTitle.getText().toString();
         String message = editTextMessage.getText().toString();

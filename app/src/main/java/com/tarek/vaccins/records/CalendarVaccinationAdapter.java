@@ -10,10 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tarek.vaccins.R;
-import com.tarek.vaccins.model.CalendarVaccination;
+import com.tarek.vaccins.model.Calendar;
 
 import java.util.List;
 
@@ -21,13 +20,15 @@ public class CalendarVaccinationAdapter extends RecyclerView.Adapter<CalendarVac
 
 
     private Context context ;
-    List<CalendarVaccination> mData ;
+    List<Calendar> mData ;
 
 
-    public CalendarVaccinationAdapter(Context context, List<CalendarVaccination> mData) {
+    public CalendarVaccinationAdapter(Context context, List<Calendar> mData) {
         this.context = context;
         this.mData = mData;
     }
+
+
 
 
 
@@ -46,25 +47,31 @@ public class CalendarVaccinationAdapter extends RecyclerView.Adapter<CalendarVac
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolderCalendarVaccination holder, int pos) {
-
-        holder.vaccinationTime.setText(mData.get(pos).getVaccinationTime());
-        holder.vaccinationDate.setText(mData.get(pos).getVaciinationDate());
+    public void onBindViewHolder(@NonNull MyViewHolderCalendarVaccination holder, final int pos) {
 
 
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        if (mData.get(pos).getAge()==0){
+            holder.vaccinationTime.setText("Naissance");
+        }else
+          holder.vaccinationTime.setText(Integer.toString(mData.get(pos).getAge())+" MOIS"  );
 
-                Toast.makeText(context,"so beaut",Toast.LENGTH_LONG).show();
 
-                context.startActivity(new Intent(context,VaccinActivity.class));
 
-            }
-        });
+          if(mData.get(pos).getValue()==1){
+              holder.vaccinationstate.setImageResource(R.drawable.button_default);
 
+          }
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                         Intent  intent = new Intent(context,VaccinActivity.class);
+                         intent.putExtra("age",mData.get(pos).getAge());
+                         intent.putExtra("state",mData.get(pos).getValue());
+
+                    context.startActivity(intent);
+                }
+            });
     }
-
     @Override
     public int getItemCount() {
         return mData.size();
@@ -73,7 +80,6 @@ public class CalendarVaccinationAdapter extends RecyclerView.Adapter<CalendarVac
     public static class MyViewHolderCalendarVaccination extends RecyclerView.ViewHolder{
 
         private TextView vaccinationTime ;
-        private TextView vaccinationDate ;
         private ImageView vaccinationstate ;
         private CardView cardView ;
 
@@ -82,7 +88,6 @@ public class CalendarVaccinationAdapter extends RecyclerView.Adapter<CalendarVac
             super(itemView);
 
             vaccinationTime = itemView.findViewById(R.id.txt_calendar_vaccination_time_name);
-            vaccinationDate = itemView.findViewById(R.id.txt_calendar_vaccination_date);
             vaccinationstate = itemView.findViewById(R.id.imgview_vaccination_state);
             cardView = itemView.findViewById(R.id.card_calendar_vaccination);
         }

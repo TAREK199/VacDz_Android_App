@@ -7,90 +7,142 @@ public class Children {
 
     @SerializedName("id")
     @Expose
-    private int id;
-
+    private Integer id;
     @SerializedName("nom")
     @Expose
-    private String firstName ;
-
+    private String nom;
     @SerializedName("prenom")
     @Expose
-    private String lastName;
-
+    private String prenom;
     @SerializedName("sex")
     @Expose
-    private int sex ;
-
+    private Integer sex;
     @SerializedName("observation")
     @Expose
     private String observation;
-
     @SerializedName("pere_id")
     @Expose
-    private int pere_id;
-
+    private Integer pereId;
     @SerializedName("date_naissance")
     @Expose
-    private String birthday;
-
+    private String dateNaissance;
     @SerializedName("lieu_naissance")
     @Expose
-    private String birthplace ;
-
+    private String lieuNaissance;
     @SerializedName("commune_id")
     @Expose
-    private int communeId ;
+    private Integer communeId;
+    @SerializedName("created_at")
+    @Expose
+    private Object createdAt;
+    @SerializedName("updated_at")
+    @Expose
+    private Object updatedAt;
 
 
-    public Children(String lastName) {
-        this.lastName = lastName;
+    public Children(String prenom) {
+        this.prenom = prenom;
     }
 
-    public Children(int id, String firstName, String lastName, int sex, String observation, int pere_id, String birthday, String birthplace, int communeId) {
+    public Children(Integer id, String nom, String prenom, Integer sex, String observation, Integer pereId, String dateNaissance, String lieuNaissance, Integer communeId, Object createdAt, Object updatedAt) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.nom = nom;
+        this.prenom = prenom;
         this.sex = sex;
         this.observation = observation;
-        this.pere_id = pere_id;
-        this.birthday = birthday;
-        this.birthplace = birthplace;
+        this.pereId = pereId;
+        this.dateNaissance = dateNaissance;
+        this.lieuNaissance = lieuNaissance;
         this.communeId = communeId;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getNom() {
+        return nom;
     }
 
-    public int getSex() {
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public Integer getSex() {
         return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
     }
 
     public String getObservation() {
         return observation;
     }
 
-    public int getPere_id() {
-        return pere_id;
-    }
-    public String getBirthday() {
-        return birthday;
+    public void setObservation(String observation) {
+        this.observation = observation;
     }
 
-    public String getBirthplace() {
-        return birthplace;
+    public Integer getPereId() {
+        return pereId;
     }
 
-    public int getCommuneId() {
+    public void setPereId(Integer pereId) {
+        this.pereId = pereId;
+    }
+
+    public String getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public void setDateNaissance(String dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+
+    public String getLieuNaissance() {
+        return lieuNaissance;
+    }
+
+    public void setLieuNaissance(String lieuNaissance) {
+        this.lieuNaissance = lieuNaissance;
+    }
+
+    public Integer getCommuneId() {
         return communeId;
+    }
+
+    public void setCommuneId(Integer communeId) {
+        this.communeId = communeId;
+    }
+
+    public Object getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Object createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Object getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Object updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

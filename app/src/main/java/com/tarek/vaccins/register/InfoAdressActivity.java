@@ -6,16 +6,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.tarek.vaccins.R;
 import com.tarek.vaccins.RetrofitInstance;
+import com.tarek.vaccins.SharedPrefManager;
 import com.tarek.vaccins.home.HomeActivity;
 import com.tarek.vaccins.model.Father;
+import com.tarek.vaccins.response.FatherResponse;
 import com.tarek.vaccins.service.FatherService;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,10 +28,15 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
     private Spinner spinnerWilaya ;
     private Spinner spinnerCommune ;
 
+    SharedPrefManager sharedPrefManager ;
 
-    private static final String[] identityType = {"Carte nationale", "Permis de conduite"};
+
+    private static final String[] identityType = {"Carte nationale"};
     private static final String[] wilaya = {"setif", "alger","constantine"};
     private static final String[] commune = {"eulma", "djemila","ain arnat","ain abbassa"};
+
+    private EditText identityNumber;
+     String firsrName,lastName,phoneNumber, email, password,identityTypeChar,identityNumberChar,wilayaChar,communeChar;
 
 
     @Override
@@ -38,11 +44,14 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_adress);
 
+        identityNumber = findViewById(R.id.edt_identity_number);
+
         spinnerIdentityType = findViewById(R.id.spinner_identity_type);
         spinnerWilaya = findViewById(R.id.spinner_wilaya);
         spinnerCommune = findViewById(R.id.spinner_commune);
 
 
+        sharedPrefManager = new SharedPrefManager(InfoAdressActivity.this);
         ArrayAdapter<String> adapterIdentityType = new ArrayAdapter(InfoAdressActivity.this,
                 android.R.layout.simple_spinner_item, identityType);
 
@@ -75,16 +84,13 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
             }
         });
 
-
         findViewById(R.id.btn_register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             //   fatherRegister();
+                fatherRegister();
 
-                startActivity(new Intent(InfoAdressActivity.this,HomeActivity.class));
             }
         });
-
     }
 
     @Override
@@ -112,33 +118,58 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
 
     public void fatherRegister(){
 
-        FatherService fatherService = RetrofitInstance.getFatherService();
 
-        fatherService.register(new Father(74125,"hako","hako@gmail.com","112233",0,"+2136475526976","setif",129)).enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-               Toast.makeText(InfoAdressActivity.this,"owééé : "+response.message(),Toast.LENGTH_SHORT).show();
-
-
-           //    List<String> father = response.body();
-
-          //      Toast.makeText(InfoAdressActivity.this,response.message(),Toast.LENGTH_SHORT).show();
+        Intent intent = getIntent();
+           firsrName = intent.getStringExtra("firstName");
+           lastName = intent.getStringExtra("lastName");
+           phoneNumber= intent.getStringExtra("phoneNumber");
+           email = intent.getStringExtra("email");
+           password = intent.getStringExtra("password");
 
 
-               // startActivity(new Intent(InfoAdressActivity.this, HomeActivity.class));
+        identityNumberChar = identityNumber.getText().toString();
+        int in = Integer.valueOf(identityNumber.getText().toString());
+
+
+
+
+        FatherService fatherService = RetrofitInstance.fatherInstance();
+
+        fatherService.register(new Father("1",email,"123",firsrName,lastName,phoneNumber,"setif","12455",in)).enqueue(new Callback<FatherResponse>() {
+
+                @Override
+            public void onResponse(Call<FatherResponse> call, Response<FatherResponse> response) {
+
+
+                    Boolean succes = response.body().getSuccess();
+
+
+
+                    if (succes) {
+                        Toast.makeText(InfoAdressActivity.this, "success : " + succes, Toast.LENGTH_SHORT).show();
+
+                            String token = response.body().getData().getToken();
+                            int id = response.body().getData().getFather().getFatherId();
+                            int userId = response.body().getData().getUser().getId();
+                            String email = response.body().getData().getFather().getEmail();
+
+                            sharedPrefManager.fatherRegister(id,userId,email,token);
+
+                            startActivity(new Intent(InfoAdressActivity.this, HomeActivity.class));
+
+                    }else {
+                        Toast.makeText(InfoAdressActivity.this, "compte existe déja", Toast.LENGTH_SHORT).show();
+
+                    }
 
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(InfoAdressActivity.this,"there's an problem here : "+t.getMessage().toString(),Toast.LENGTH_SHORT).show();
-             //   startActivity(new Intent(InfoAdressActivity.this, HomeActivity.class));
+            public void onFailure(Call<FatherResponse> call, Throwable t) {
+                Toast.makeText(InfoAdressActivity.this,"problem : "+t.getMessage().toString(),Toast.LENGTH_SHORT).show();
 
             }
         });
-
-
-
 
 
     }

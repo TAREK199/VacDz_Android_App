@@ -53,7 +53,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/edt_lastname"
+            android:id="@+id/edt_identity_number"
             android:hint="Numéro de pièce"
             android:inputType="phone"
             android:drawableLeft="@drawable/ic_carte"
@@ -75,7 +75,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="adresse "
+            android:text="wilaya "
             android:textSize="17dp"
             android:textColor="@color/black"
             />

@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.tarek.vaccins.R;
+import com.tarek.vaccins.SharedPrefManager;
 import com.tarek.vaccins.model.HealthSpace;
 
 import java.util.List;

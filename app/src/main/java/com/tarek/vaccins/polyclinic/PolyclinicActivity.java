@@ -97,7 +97,7 @@ public class PolyclinicActivity extends AppCompatActivity {
 
     public void getPolycliniques(){
 
-        PolyclinicService polyclinicService = RetrofitInstance.getPolycliniqueService();
+        PolyclinicService polyclinicService = RetrofitInstance.polyInstance();
 
         polyclinicService.getPolycliniques().enqueue(new Callback<Polyclinic>() {
             @Override

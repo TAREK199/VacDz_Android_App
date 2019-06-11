@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tarek.vaccins">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".notification.App"
         android:allowBackup="true"
@@ -10,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".home.VaccinInfosActivity"></activity>
+        <activity android:name=".NotificationHelper"></activity>
+
+
+
+        <activity android:name=".home.VaccinInfosActivity" />
         <activity android:name=".home.SettingActivity" />
         <activity android:name=".notification.NotificationActivity" />
         <activity android:name=".edit.EditFatherProfile" />
@@ -20,38 +26,27 @@
         <activity android:name=".polyclinic.PolyclinicActivity" />
         <activity android:name=".records.VaccinActivity" />
         <activity android:name=".records.RecordsActivity" />
-        <activity android:name=".register.InfoAdressActivity" >
-
-
-
-        </activity>
-        <activity android:name=".register.RegisterActivity" >
-
-
-        </activity>
-        <activity android:name=".register.InfosActivity" />
+        <activity android:name=".register.InfoAdressActivity" />
+        <activity android:name=".register.RegisterActivity" />
         <activity android:name=".login.LoginActivity" />
-        <activity android:name=".register.WelcomeActivity" >
-
-
-        </activity>
+        <activity android:name=".register.WelcomeActivity" />
         <activity android:name=".register.IntroActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".home.HomeActivity" >
-
-
-
-
-        </activity>
+        <activity android:name=".home.HomeActivity" />
 
         <receiver android:name=".notification.NotificationReceiver" />
+
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

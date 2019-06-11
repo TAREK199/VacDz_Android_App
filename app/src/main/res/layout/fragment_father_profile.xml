@@ -52,12 +52,36 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:id="@+id/txt_father_name_profile"
                     android:textColor="@color/black"
                     android:textSize="25dp"
                     android:text="Rebai Tarek"
                     android:textStyle="bold"
                     android:layout_marginLeft="10dp"
                     android:gravity="center"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ic_phone"
+                    android:layout_marginLeft="30dp"
+
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:id="@+id/txt_father_phone_number"
+                    android:text="0699289437"
+                    android:layout_marginLeft="10dp"
                     />
 
             </LinearLayout>
@@ -80,33 +104,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
+                android:id="@+id/txt_father_adr_profile"
                 android:text="cité chikh el aifa"
                 android:layout_marginLeft="10dp"
                 />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="0dp"
-                >
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/ic_phone"
-                    android:layout_marginLeft="30dp"
-
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="25dp"
-                    android:text="0699289437"
-                    android:layout_marginLeft="10dp"
-                    />
-
-            </LinearLayout>
 
 
             <LinearLayout

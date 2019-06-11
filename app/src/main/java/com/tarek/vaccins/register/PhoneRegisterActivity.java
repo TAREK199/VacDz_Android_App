@@ -138,8 +138,10 @@ public class PhoneRegisterActivity extends AppCompatActivity {
                 if(task.isSuccessful()) {
 
                     String phNumber = mPhoneNumber.getText().toString();
+
+                    Toast.makeText(PhoneRegisterActivity.this,"aw rayah : "+phNumber,Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(PhoneRegisterActivity.this,RegisterActivity.class);
-                    intent.putExtra(phNumber,"phNumber");
+                    intent.putExtra("phNumber",phNumber);
                     startActivity(intent);
 
                     finish();
