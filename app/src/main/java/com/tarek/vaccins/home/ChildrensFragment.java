@@ -40,11 +40,8 @@ public class ChildrensFragment extends Fragment {
 
 
         sharedPrefManager = new SharedPrefManager(getActivity());
-
          getChildrens();
-
         return view;
-
     }
 
 

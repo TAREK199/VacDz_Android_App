@@ -2,7 +2,6 @@ package com.tarek.vaccins.home;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -10,19 +9,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tarek.vaccins.R;
-import com.tarek.vaccins.model.RDV;
+import com.tarek.vaccins.model.Rdv;
+import com.tarek.vaccins.response.RdvResponse;
 
 import java.util.List;
 
-public class RDVAdapter extends RecyclerView.Adapter<RDVAdapter.MyViewHolderRDV> {
+public class RdvAdapter extends RecyclerView.Adapter<RdvAdapter.MyViewHolderRDV> {
 
 
     private Context context;
-    List<RDV> rdvList;
+    List<Rdv> rdvList;
 
-    public RDVAdapter(Context context, List<RDV> rdvList) {
+    public RdvAdapter(Context context, List<Rdv> rdvList) {
         this.context = context;
         this.rdvList = rdvList;
     }
@@ -40,11 +41,11 @@ public class RDVAdapter extends RecyclerView.Adapter<RDVAdapter.MyViewHolderRDV>
     @Override
     public void onBindViewHolder(@NonNull MyViewHolderRDV holder, int position) {
 
-        holder.rdvDate.setText(rdvList.get(position).getRdvDate());
-        holder.childName.setText(rdvList.get(position).getChildName());
-        holder.acte.setText(rdvList.get(position).getActe());
-        holder.polyName.setText(rdvList.get(position).getPolyName());
-        holder.polyAdr.setText(rdvList.get(position).getPolyAdr());
+        holder.rdvDate.setText(rdvList.get(position).getDateRdv());
+        holder.childName.setText(rdvList.get(position).getEnfant());
+     //   holder.acte.setText(rdvList.get(position).getActe());
+        holder.polyName.setText(rdvList.get(position).getPolyclinique());
+  //      holder.polyAdr.setText(rdvList.get(position).getPolyAdr());
 
     }
 
@@ -68,7 +69,6 @@ public class RDVAdapter extends RecyclerView.Adapter<RDVAdapter.MyViewHolderRDV>
             childName = itemView.findViewById(R.id.txt_child_name_rdv);
             acte = itemView.findViewById(R.id.txt_child_acte_rdv);
             polyName = itemView.findViewById(R.id.txt_poly_name_rdv);
-            polyAdr = itemView.findViewById(R.id.txt_poly_adr_rdv);
 
         }
     }

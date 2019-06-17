@@ -8,10 +8,8 @@
         android:id="@+id/nav_vaccination_child"
         android:icon="@drawable/ic_home_white_24dp"
         android:title="vaccination" />
-    <item
-        android:id="@+id/nav_record_child"
-        android:icon="@drawable/ic_explore_white_24dp"
-        android:title="Records" />
+
+
     <item
         android:id="@+id/nav_profile_child"
         android:icon="@drawable/ic_person_black_24dp"

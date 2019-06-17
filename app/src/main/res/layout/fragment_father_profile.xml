@@ -90,27 +90,49 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
                 >
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/ic_location"
                     android:layout_marginLeft="30dp"
-
                     />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp"
+                    >
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:id="@+id/txt_father_adr_profile"
-                android:text="cité chikh el aifa"
+                android:id="@+id/txt_father_wilaya_profile"
+                android:text="sétif"
                 android:layout_marginLeft="10dp"
                 />
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:id="@+id/txt_father_commune_profile"
+                        android:text="cité chikh el aifa"
+                        android:layout_marginLeft="10dp"
+                        />
+
             </LinearLayout>
 
+
+            </LinearLayout>
 
 
             <LinearLayout

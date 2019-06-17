@@ -19,7 +19,8 @@ public class SharedPrefManager {
     private static String KEY_TOKEN = "token";
     private static String KEY_FIREBASE_TOKEN = "firebase_token";
     private static String KEY_CHILD_ID ="child_id";
-
+    private static String KEY_COMMUNE ="commune";
+    private static String KEY_PASSWORD ="password";
 
 
 
@@ -78,6 +79,16 @@ public class SharedPrefManager {
         return true;
     }
 
+
+    public boolean storeCommune(String communeName)
+    {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_COMMUNE,communeName);
+        editor.apply();
+        return true;
+    }
+
     public boolean isLoggedIn()
     {
         SharedPreferences sharedPreferences =context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
@@ -104,6 +115,12 @@ public class SharedPrefManager {
         return  sharedPreferences.getInt(KEY_FATHER_ID,0);
     }
 
+
+    public String getCommune()
+    {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        return  sharedPreferences.getString(KEY_COMMUNE,null);
+    }
 
         public int getUserId()
     {

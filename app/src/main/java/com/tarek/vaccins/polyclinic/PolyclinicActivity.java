@@ -15,7 +15,10 @@ import android.widget.Toast;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.tarek.vaccins.R;
 import com.tarek.vaccins.RetrofitInstance;
+import com.tarek.vaccins.SharedPrefManager;
 import com.tarek.vaccins.home.HomeActivity;
+import com.tarek.vaccins.model.Polyclinic;
+import com.tarek.vaccins.records.VaccinActivity;
 import com.tarek.vaccins.service.PolyclinicService;
 
 import java.util.ArrayList;
@@ -30,8 +33,11 @@ public class PolyclinicActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView ;
     private List<Polyclinic> polyclinicList;
+    PolyclinicAdapater polyclinicAdapater ;
     private Toolbar toolbar ;
     private MaterialSearchView searchView ;
+    SharedPrefManager sharedPrefManager ;
+    String communeName ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,24 +45,54 @@ public class PolyclinicActivity extends AppCompatActivity {
         setContentView(R.layout.activity_polyclinic);
 
         toolbar = findViewById(R.id.toolbar_poly_search);
-        searchView =  findViewById(R.id.searview_poly);
+        searchView =  findViewById(R.id.searchview_poly);
+
+
 
         setSupportActionBar(toolbar);
         //getSupportActionBar().setTitle("Trouver votre polyclinique");
         toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
 
 
+        sharedPrefManager = new SharedPrefManager(PolyclinicActivity.this);
 
-        viewData();
+
+
+
         getPolycliniques();
-
         findViewById(R.id.img_from_poly).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PolyclinicActivity.this, HomeActivity.class));
+                startActivity(new Intent(PolyclinicActivity.this, VaccinActivity.class));
             }
         });
 
+        /*
+        polyclinicAdapater = new PolyclinicAdapater(PolyclinicActivity.this,polyclinicList);
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+
+                polyclinicAdapater.getFilter().filter(query);
+
+                Toast.makeText(PolyclinicActivity.this,"eeh textchange",Toast.LENGTH_LONG).show();
+
+                return false;
+            }
+        });
+*/
+
+        findViewById(R.id.btn_from_polyclinics).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PolyclinicActivity.this,PolyclinicMapActivity.class));
+            }
+        });
     }
 
     @Override
@@ -65,27 +101,13 @@ public class PolyclinicActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.search_item,menu);
         MenuItem item = menu.findItem(R.id.item_poly_search);
         searchView.setMenuItem(item);
+
         return true;
     }
 
     public void viewData(){
 
         recyclerView = findViewById(R.id.recycle_poly);
-        polyclinicList = new ArrayList<>();
-
-        Toast.makeText(PolyclinicActivity.this,"in viewDta",Toast.LENGTH_LONG).show();
-
-        polyclinicList.add(new Polyclinic("saadna abdennor","city belair"));
-        polyclinicList.add(new Polyclinic("saadna abdennor","city belair"));
-        polyclinicList.add(new Polyclinic("saadna abdennor","city belair"));
-        polyclinicList.add(new Polyclinic("saadna abdennor","city belair"));
-        polyclinicList.add(new Polyclinic("saadna abdennor","city belair"));
-        polyclinicList.add(new Polyclinic("saadna abdennor","city belair"));
-        polyclinicList.add(new Polyclinic("saadna abdennor","city belair"));
-        polyclinicList.add(new Polyclinic("saadna abdennor","city belair"));
-        polyclinicList.add(new Polyclinic("saadna abdennor","city belair"));
-
-
 
         PolyclinicAdapater polyclinicAdapater = new PolyclinicAdapater(PolyclinicActivity.this, polyclinicList);
 
@@ -93,21 +115,29 @@ public class PolyclinicActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(polyclinicAdapater);
     }
-
-
     public void getPolycliniques(){
 
-        PolyclinicService polyclinicService = RetrofitInstance.polyInstance();
 
-        polyclinicService.getPolycliniques().enqueue(new Callback<Polyclinic>() {
+        String token = sharedPrefManager.getToken();
+        String commune = sharedPrefManager.getCommune();
+
+        PolyclinicService polyclinicService = RetrofitInstance.polyclinicInstance();
+        polyclinicService.getPolycliniques("Bearer "+token,commune).enqueue(new Callback<List<Polyclinic>>() {
             @Override
-            public void onResponse(Call<Polyclinic> call, Response<Polyclinic> response) {
-                Toast.makeText(PolyclinicActivity.this,"résult is : "+response.body().getPolyAdress(),Toast.LENGTH_LONG).show();
+            public void onResponse(Call<List<Polyclinic>> call, Response<List<Polyclinic>> response) {
 
+
+                if (response.body().size()!=0) {
+                    polyclinicList = new ArrayList<>();
+                    polyclinicList = response.body();
+                    viewData();
+                }else {
+                    Toast.makeText(PolyclinicActivity.this,"aucune polycliniques dans ce lieu",Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
-            public void onFailure(Call<Polyclinic> call, Throwable t) {
+            public void onFailure(Call<List<Polyclinic>> call, Throwable t) {
                 Toast.makeText(PolyclinicActivity.this,"problem : "+t.toString(),Toast.LENGTH_LONG).show();
 
             }

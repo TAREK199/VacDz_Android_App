@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".edit.EditAccountActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar_edit_account"
+        android:background="@color/blue">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_arrow_from_edit_account"
+            android:background="@drawable/ic_keyboard_arrow_left_white" />
+    </android.support.v7.widget.Toolbar>
+
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/linear_edit_account"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:layout_below="@+id/toolbar_edit_account"
+        >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edt_email_edit_account"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="5dp"
+            android:hint="EMAIL"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:background="@drawable/ic_edittextstyle"
+            android:drawablePadding="20dp"
+
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:layout_below="@+id/linear_edit_account"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MOT DE PASSE"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edt_password_edit_account"
+            android:inputType="textPassword"
+            android:layout_marginTop="5dp"
+            android:hint="****"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:background="@drawable/ic_edittextstyle"
+            android:drawablePadding="20dp"
+
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_confirm_password_edit_account"
+            android:inputType="textPassword"
+            android:layout_marginTop="15dp"
+            android:hint="****"
+            android:drawableLeft="@drawable/ic_person_black_24dp"
+            android:background="@drawable/ic_edittextstyle"
+            android:drawablePadding="20dp"
+
+            />
+
+    </LinearLayout>
+
+
+    <Button
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:id="@+id/btn_confirm_modification"
+        android:text="Modifier"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_danger_style" />
+
+
+
+</RelativeLayout>

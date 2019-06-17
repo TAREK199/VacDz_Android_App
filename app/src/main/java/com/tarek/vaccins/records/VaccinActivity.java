@@ -2,6 +2,8 @@ package com.tarek.vaccins.records;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -42,6 +44,7 @@ public class VaccinActivity extends AppCompatActivity {
     SharedPrefManager sharedPrefManager ;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,7 @@ public class VaccinActivity extends AppCompatActivity {
         sharedPrefManager =  new SharedPrefManager(VaccinActivity.this);
 
 
+
         findViewById(R.id.img_arrow_from_vaccin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +69,12 @@ public class VaccinActivity extends AppCompatActivity {
         btnAppointement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(VaccinActivity.this, PolyclinicActivity.class));
+
+                startActivity(new Intent(VaccinActivity.this, WilayaActivity.class));
+
+
+
+
             }
         });
 
@@ -88,7 +97,6 @@ public class VaccinActivity extends AppCompatActivity {
             btnAppointement.setVisibility(View.GONE) ;
         }
 
-
         getVaccinations();
     }
 
@@ -102,7 +110,7 @@ public class VaccinActivity extends AppCompatActivity {
         recyclerView.setAdapter(vaccinationAdapter);
     }
 
-
+    
     public void getVaccinations(){
 
         String token = sharedPrefManager.getToken();
@@ -138,6 +146,7 @@ public class VaccinActivity extends AppCompatActivity {
 
 
     }
+
 
 
 

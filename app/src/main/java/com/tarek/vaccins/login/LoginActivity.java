@@ -1,11 +1,14 @@
 package com.tarek.vaccins.login;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,6 +25,7 @@ import com.tarek.vaccins.home.HomeActivity;
 import com.tarek.vaccins.R;
 import com.tarek.vaccins.model.UserLogin;
 import com.tarek.vaccins.notification.TestNotification;
+import com.tarek.vaccins.polyclinic.PolyclincProfileActivity;
 import com.tarek.vaccins.register.PhoneRegisterActivity;
 import com.tarek.vaccins.response.LoginResponse;
 import com.tarek.vaccins.service.FatherService;
@@ -48,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
         btnLogin = findViewById(R.id.btn_seconnecter);
         txtNewAccount = findViewById(R.id.txt_newAccount);
@@ -82,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this,TestNotification.class));
                 finish();return;
+
             }
         });
 
@@ -98,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                       sharedPrefManager.storeFireBaseToken(token);
                                    //   Toast.makeText(LoginActivity.this," firebase token is : "+sharedPrefManager.getFireBaseToken(),Toast.LENGTH_LONG).show();
-                                      Log.d("my token",token);
+                                  //    Log.d("my token",token);
 
                                   }else {
                                       Toast.makeText(LoginActivity.this,"error : "+task.getException().getMessage(),Toast.LENGTH_LONG).show();
@@ -106,8 +110,6 @@ public class LoginActivity extends AppCompatActivity {
                                   }
                               }
                           });
-
-
     }
 
 
@@ -130,12 +132,15 @@ public class LoginActivity extends AppCompatActivity {
                 if (success) {
 
                     Toast.makeText(LoginActivity.this, "is logged in", Toast.LENGTH_LONG).show();
+                    sharedPrefManager.fatherLogin(response.body().getData().getPere().getFatherId(),
+                            response.body().getData().getUser().getId(),
+                            response.body().getData().getUser().getEmail(),
+                            response.body().getData().getToken());
+
+
                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
 
-                       sharedPrefManager.fatherLogin(response.body().getData().getPere().getFatherId(),
-                                                     response.body().getData().getUser().getId(),
-                                                     response.body().getData().getPere().getEmail(),
-                                                     response.body().getData().getToken());
+
                 }
                 else {
                     Toast.makeText(LoginActivity.this, "compte n'existe pas ", Toast.LENGTH_LONG).show();

@@ -91,10 +91,9 @@ public class Father {
     }
 
 
-    public Father(int identityNumber, String email, String firstNameChar, String lastnameChar, String phoneNmbr1Char, String phoneNbr2Char, String adresseChar, String communeId) {
+    public Father(String firstNameChar, String lastnameChar, String phoneNmbr1Char, String phoneNbr2Char, String adresseChar, String communeId) {
 
-        this.id = identityNumber ;
-        this.email = email;
+
         this.nom = firstNameChar ;
         this.prenom = lastnameChar ;
         this.wilaya = adresseChar ;
@@ -110,6 +109,10 @@ public class Father {
 
     public void setDocument(String document) {
         this.document = document;
+    }
+
+    public String getNom() {
+        return nom;
     }
 
     public String getPrenom() {

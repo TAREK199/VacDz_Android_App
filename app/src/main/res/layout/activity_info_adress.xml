@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
         >
 
         <TextView
@@ -79,23 +79,25 @@
             android:textSize="17dp"
             android:textColor="@color/black"
             />
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/spinner_wilaya"
-            android:background="@drawable/ic_edittextstyle"
-            android:drawablePadding="20dp"
-            android:layout_marginTop="10dp"
-            />
 
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/spinner_commune"
-            android:background="@drawable/ic_edittextstyle"
-            android:drawablePadding="20dp"
-            android:layout_marginTop="10dp"
-            />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="200dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_wilaya_register"
+                android:layout_width="350dp"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relative_welaya_fragment_in"
+                android:layout_marginTop="30dp"
+                />
+
+
+        </RelativeLayout>
+
+
 
     </LinearLayout>
 

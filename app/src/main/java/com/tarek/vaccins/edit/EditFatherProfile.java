@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.tarek.vaccins.R;
 import com.tarek.vaccins.RetrofitInstance;
 import com.tarek.vaccins.SharedPrefManager;
+import com.tarek.vaccins.home.FatherProfileFragment;
 import com.tarek.vaccins.home.HomeActivity;
 import com.tarek.vaccins.model.Father;
 import com.tarek.vaccins.response.FatherProfileResponse;
@@ -112,8 +113,7 @@ public class EditFatherProfile extends AppCompatActivity {
 
 
                 if (success){
-
-                    firstName.setText(response.body().getData().getUser().getName());
+                    firstName.setText(response.body().getData().getPere().getNom());
                     lastName.setText(response.body().getData().getPere().getPrenom());
                     phoneNumber1.setText(response.body().getData().getPere().getTel1());
                     phoneNumber2.setText(response.body().getData().getPere().getTel2());
@@ -137,38 +137,29 @@ public class EditFatherProfile extends AppCompatActivity {
     }
 
     public  void editProfile(){
-
-        firstNameChar = firstName.toString().trim();
-        lastnameChar = lastName.toString().trim();
-        adresseChar = adresse.toString().trim();
-        phoneNbr2Char = phoneNumber1.toString().trim();
-        phoneNmbr1Char = phoneNumber2.toString().trim();
-        identityNumberChar = identityNumber.toString().trim();
-
-        //identity =
+        firstNameChar = firstName.getText().toString().trim();
+        lastnameChar = lastName.getText().toString().trim();
+        adresseChar = adresse.getText().toString().trim();
+        phoneNbr2Char = phoneNumber1.getText().toString().trim();
+        phoneNmbr1Char = phoneNumber2.getText().toString().trim();
 
         String token = sharedPrefManager.getToken();
         int userId = sharedPrefManager.getUserId();
-        String email = sharedPrefManager.getEmail();
-
-
-
-
 
         FatherService fatherService = RetrofitInstance.fatherInstance();
 
-        fatherService.editFatherProfile("Bearer "+token,userId,new Father(123,email,firstNameChar,lastnameChar,phoneNmbr1Char,phoneNbr2Char,adresseChar,"45")).enqueue(new Callback<FatherProfileResponse>() {
+        fatherService.editFatherProfile("Bearer "+token,userId,new Father(firstNameChar,lastnameChar,phoneNmbr1Char,phoneNbr2Char,adresseChar,"45")).enqueue(new Callback<FatherProfileResponse>() {
             @Override
             public void onResponse(Call<FatherProfileResponse> call, Response<FatherProfileResponse> response) {
 
                 Boolean success = response.body().getSuccess() ;
 
 
-                Toast.makeText(EditFatherProfile.this,"success here is "+success,Toast.LENGTH_LONG).show();
-
                 if (success){
 
-              //      startActivity(new Intent(EditFatherProfile.this, HomeActivity.class));
+                    Toast.makeText(EditFatherProfile.this,"votre profile est à jour",Toast.LENGTH_LONG).show();
+
+                  startActivity(new Intent(EditFatherProfile.this, HomeActivity.class));
 
                 }
 

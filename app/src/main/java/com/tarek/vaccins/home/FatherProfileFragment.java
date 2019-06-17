@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +17,6 @@ import com.tarek.vaccins.R;
 import com.tarek.vaccins.RetrofitInstance;
 import com.tarek.vaccins.SharedPrefManager;
 import com.tarek.vaccins.edit.EditFatherProfile;
-import com.tarek.vaccins.response.ChildrenResponse;
 import com.tarek.vaccins.response.FatherProfileResponse;
 import com.tarek.vaccins.service.FatherService;
 
@@ -46,7 +45,7 @@ public class FatherProfileFragment extends Fragment {
 
 
         nameView = view.findViewById(R.id.txt_father_name_profile);
-        adresseView = view.findViewById(R.id.txt_father_adr_profile);
+        adresseView = view.findViewById(R.id.txt_father_wilaya_profile);
         phoneNumberView = view.findViewById(R.id.txt_father_phone_number);
 
 
@@ -76,18 +75,19 @@ public class FatherProfileFragment extends Fragment {
                 Boolean success = response.body().getSuccess();
 
                 if (success){
-
                     String firstName = response.body().getData().getUser().getName();
                     String lastName = response.body().getData().getPere().getPrenom();
                     String phoneNumber = response.body().getData().getPere().getTel1()        ;
                     String adr = response.body().getData().getPere().getWilaya();
 
-                    nameView.setText(firstName);
+                    nameView.setText(firstName + " "+lastName);
                     phoneNumberView.setText(phoneNumber);
                     adresseView.setText(adr);
+
+
                 }
                 else {
-                    Toast.makeText(getActivity(),"success "+success,Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"no data to display "+success,Toast.LENGTH_LONG).show();
 
                 }
 
