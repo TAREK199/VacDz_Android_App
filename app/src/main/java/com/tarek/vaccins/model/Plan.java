@@ -12,6 +12,7 @@ public class Plan {
     @SerializedName("jour")
     @Expose
     private Integer jour;
+
     @SerializedName("vaccin")
     @Expose
     private String vaccin;
@@ -19,6 +20,11 @@ public class Plan {
     @SerializedName("polyclinique")
     @Expose
     private String polyclinique;
+
+    public Plan(int jour, String vaccin) {
+        this.jour = jour ;
+        this.vaccin = vaccin ;
+    }
 
     public Integer getId() {
         return id;

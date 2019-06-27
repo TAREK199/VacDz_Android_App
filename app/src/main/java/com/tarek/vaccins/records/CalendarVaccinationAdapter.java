@@ -64,7 +64,7 @@ public class CalendarVaccinationAdapter extends RecyclerView.Adapter<CalendarVac
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                         Intent  intent = new Intent(context,VaccinActivity.class);
+                         Intent  intent = new Intent(context, VaccinationActivity.class);
                          intent.putExtra("age",mData.get(pos).getAge());
                          intent.putExtra("state",mData.get(pos).getValue());
 

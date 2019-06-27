@@ -53,11 +53,22 @@
 
     </LinearLayout>
 
+    <Button
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/btn_edit_email_edit_account"
+        android:layout_below="@id/linear_edit_account"
+        android:layout_marginTop="20dp"
+        android:text="Modifier Email"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_danger_style" />
 
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:id="@+id/linear_password_eddit_account"
+        android:layout_marginTop="150dp"
         android:layout_centerHorizontal="true"
         android:orientation="vertical"
         android:layout_below="@+id/linear_edit_account"
@@ -102,11 +113,11 @@
     <Button
         android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:id="@+id/btn_confirm_modification"
-        android:text="Modifier"
+        android:layout_marginTop="30dp"
+        android:id="@+id/btn_edit_password_account"
+        android:layout_below="@+id/linear_password_eddit_account"
+        android:text="Modifier Mot de passe"
         android:textColor="@color/white"
         android:background="@drawable/btn_danger_style" />
 

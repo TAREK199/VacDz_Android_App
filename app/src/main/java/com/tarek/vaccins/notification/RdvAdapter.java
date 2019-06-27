@@ -15,13 +15,13 @@ import com.tarek.vaccins.model.Notification;
 
 import java.util.List;
 
-public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.MyViewHolderNotification> {
+public class RdvAdapter extends RecyclerView.Adapter<RdvAdapter.MyViewHolderNotification> {
 
 
     private Context context ;
     private List<Notification> mData ;
 
-    public NotificationAdapter(Context context, List<Notification> mData) {
+    public RdvAdapter(Context context, List<Notification> mData) {
         this.context = context;
         this.mData = mData;
     }

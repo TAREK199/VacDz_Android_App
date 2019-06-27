@@ -12,6 +12,10 @@ public class Vaccin {
     @Expose
     private Integer value;
 
+    public Vaccin(String vaccin) {
+        this.vaccin = vaccin ;
+    }
+
     public String getVaccin() {
         return vaccin;
     }

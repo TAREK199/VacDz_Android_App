@@ -37,7 +37,7 @@ public class Father {
     @Expose
     private String wilaya;
 
-    @SerializedName("commune_id")
+    @SerializedName("commune")
     @Expose
     private String communeId;
 

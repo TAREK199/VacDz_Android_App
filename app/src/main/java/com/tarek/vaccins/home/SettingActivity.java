@@ -31,7 +31,12 @@ public class SettingActivity extends AppCompatActivity {
 
 
         email = findViewById(R.id.txt_email_settings);
-
+/*
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+*/
 
         findViewById(R.id.img_from_settings).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +54,7 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.img_from_setting_to_edit).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.linear_setting_account).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final AlertDialog dialogBuilder = new AlertDialog.Builder(SettingActivity.this).create();
@@ -71,7 +76,7 @@ public class SettingActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         // DO SOMETHINGS
 
-                        if (checkPassword.getText().toString().toString().equals("0000")) {
+                        if (checkPassword.getText().toString().equals("0000")) {
                             startActivity(new Intent(SettingActivity.this, EditAccountActivity.class));
                             dialogBuilder.dismiss();
                         }else {

@@ -35,7 +35,7 @@ public class WilayaAdapterRegister extends RecyclerView.Adapter<WilayaAdapterReg
     SharedPrefManager sharedPrefManager ;
     ArrayAdapter<String> arrayAdapter ;
 
-    int wilaya_id ,wilaya;
+    int wilaya_id ;
 
     public WilayaAdapterRegister(Context context, List<Wilaya> mData) {
         this.context = context;
@@ -59,16 +59,14 @@ public class WilayaAdapterRegister extends RecyclerView.Adapter<WilayaAdapterReg
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolderWilayaRegister holder, final int pos) {
 
-
         holder.wilayaNumber.setText(String.valueOf(mData.get(pos).getId()));
         holder.wilayaName.setText(mData.get(pos).getNom());
-
-        Toast.makeText(context,"wialaya id is "+mData.get(pos).getId(),Toast.LENGTH_LONG).show();
-
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 wilaya_id = mData.get(pos).getId();
+
+                Toast.makeText(context,"wilaya name "+mData.get(pos).getNom(),Toast.LENGTH_LONG).show();
                 showCommune();
             }
         });
@@ -80,23 +78,25 @@ public class WilayaAdapterRegister extends RecyclerView.Adapter<WilayaAdapterReg
         return mData.size();
     }
 
-
     public void getCommune(){
-        String token = sharedPrefManager.getToken();
+
+        Toast.makeText(context,"wilaya id "+wilaya_id,Toast.LENGTH_LONG).show();
+
         FatherService fatherService = RetrofitInstance.fatherInstance();
 
-        fatherService.getCommunes("Bearer "+token,wilaya_id).enqueue(new Callback<CommuneResponse>() {
+        fatherService.getCommunesRegister(wilaya_id).enqueue(new Callback<CommuneResponse>() {
             @Override
             public void onResponse(Call<CommuneResponse> call, Response<CommuneResponse> response) {
 
                 Boolean success = response.body().getSuccess();
+
 
                 if (success) {
                     for (int i = 0; i < response.body().getData().size(); i++) {
                         arrayAdapter.add(response.body().getData().get(i).getNom());
                     }
                 }else {
-                    Toast.makeText(context,"no data to display "+success,Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,"no commune to display ",Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -143,7 +143,6 @@ public class WilayaAdapterRegister extends RecyclerView.Adapter<WilayaAdapterReg
         builderSingle.show();
 
     }
-
 
 
 

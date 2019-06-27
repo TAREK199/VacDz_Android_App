@@ -1,39 +1,31 @@
 package com.tarek.vaccins.model;
 
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Vaccination {
-
+public class VaccinState {
 
     @SerializedName("id")
     @Expose
     private Integer id;
-
     @SerializedName("date_vaccination")
     @Expose
     private String dateVaccination;
-
     @SerializedName("polyclinique_id")
     @Expose
-    private String polycliniqueId;
-
-    @SerializedName("vaccin")
+    private Integer polycliniqueId;
+    @SerializedName("vaccin_id")
     @Expose
-    private String vaccin;
-
+    private Integer vaccinId;
     @SerializedName("enfant_id")
     @Expose
     private Integer enfantId;
-
     @SerializedName("age")
     @Expose
     private Integer age;
     @SerializedName("created_at")
     @Expose
     private Object createdAt;
-
     @SerializedName("updated_at")
     @Expose
     private Object updatedAt;
@@ -54,20 +46,20 @@ public class Vaccination {
         this.dateVaccination = dateVaccination;
     }
 
-    public String getPolycliniqueId() {
+    public Integer getPolycliniqueId() {
         return polycliniqueId;
     }
 
-    public void setPolycliniqueId(String polycliniqueId) {
+    public void setPolycliniqueId(Integer polycliniqueId) {
         this.polycliniqueId = polycliniqueId;
     }
 
-    public String getVaccin() {
-        return vaccin;
+    public Integer getVaccinId() {
+        return vaccinId;
     }
 
-    public void setVaccin(String vaccin) {
-        this.vaccin = vaccin;
+    public void setVaccinId(Integer vaccinId) {
+        this.vaccinId = vaccinId;
     }
 
     public Integer getEnfantId() {

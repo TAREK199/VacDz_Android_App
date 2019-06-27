@@ -75,7 +75,7 @@ public class FatherProfileFragment extends Fragment {
                 Boolean success = response.body().getSuccess();
 
                 if (success){
-                    String firstName = response.body().getData().getUser().getName();
+                    String firstName = response.body().getData().getPere().getNom();
                     String lastName = response.body().getData().getPere().getPrenom();
                     String phoneNumber = response.body().getData().getPere().getTel1()        ;
                     String adr = response.body().getData().getPere().getWilaya();

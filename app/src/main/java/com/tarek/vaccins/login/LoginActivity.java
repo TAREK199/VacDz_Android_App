@@ -116,43 +116,64 @@ public class LoginActivity extends AppCompatActivity {
     public void login(){
 
 
-        emailChar = email.getText().toString();
-        passwordChar = password.getText().toString();
+        if (validate()) {
+            emailChar = email.getText().toString();
+            passwordChar = password.getText().toString();
 
 
-        FatherService fatherService = RetrofitInstance.fatherInstance();
+            FatherService fatherService = RetrofitInstance.fatherInstance();
 
-        fatherService.fatherLogin(new UserLogin(emailChar,passwordChar)).enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-
-
-                Boolean success = response.body().getSuccess();
-
-                if (success) {
-
-                    Toast.makeText(LoginActivity.this, "is logged in", Toast.LENGTH_LONG).show();
-                    sharedPrefManager.fatherLogin(response.body().getData().getPere().getFatherId(),
-                            response.body().getData().getUser().getId(),
-                            response.body().getData().getUser().getEmail(),
-                            response.body().getData().getToken());
+            fatherService.fatherLogin(new UserLogin(emailChar, passwordChar)).enqueue(new Callback<LoginResponse>() {
+                @Override
+                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
 
-                       startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                    Boolean success = response.body().getSuccess();
 
+                    if (success) {
+
+                        Toast.makeText(LoginActivity.this, "is logged in", Toast.LENGTH_LONG).show();
+                        sharedPrefManager.fatherLogin(response.body().getData().getPere().getFatherId(),
+                                response.body().getData().getUser().getId(),
+                                response.body().getData().getUser().getEmail(),
+                                response.body().getData().getToken());
+
+
+                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+
+
+                    } else {
+                        Toast.makeText(LoginActivity.this, "compte n'existe pas ", Toast.LENGTH_LONG).show();
+
+                    }
 
                 }
-                else {
-                    Toast.makeText(LoginActivity.this, "compte n'existe pas ", Toast.LENGTH_LONG).show();
 
+                @Override
+                public void onFailure(Call<LoginResponse> call, Throwable t) {
+
+                    Toast.makeText(LoginActivity.this, "problem : " + t.getMessage(), Toast.LENGTH_LONG).show();
                 }
-            }
+            });
 
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+        }
+    }
 
-                Toast.makeText(LoginActivity.this,"problem : "+t.getMessage(),Toast.LENGTH_LONG).show();
-            }
-        });
+    public Boolean validate() {
+        Boolean value = true;
+        if (email.toString().equals("") && !android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString().trim()).matches()) {
+            value = false;
+            email.setError(getString(R.string.email_invalid));
+        } else {
+            email.setError(null);
+        }
+
+        if (password.getText().toString().trim().equals("")) {
+            value = false;
+            password.setError(getString(R.string.fiels_is_required));
+        } else {
+            password.setError(null);
+        }
+        return value;
     }
 }

@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Father Pofile "
+            android:text="MODIFIER PROFILE "
             android:textSize="30dp"
             android:textColor="@color/white"
             android:layout_margin="20dp"
@@ -95,7 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/edit_edit_profile_phone1"
-                    android:hint="0699289437"
+                    android:hint="0000 00 00 00"
                     android:drawableLeft="@drawable/ic_phone"
                     android:drawablePadding="30dp"
                     android:inputType="number"
@@ -155,7 +155,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="70dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="60dp"
 
         android:background="@drawable/btn_gradient_style" />
 
@@ -167,7 +167,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="80dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/ic_action_navigation_arrow_back" />
 
 

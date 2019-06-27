@@ -34,6 +34,8 @@ public class EditAccountActivity extends AppCompatActivity {
         email = findViewById(R.id.edt_email_edit_account);
         password = findViewById(R.id.edt_password_edit_account);
 
+        email.setText(sharedPrefManager.getEmail());
+
 
         findViewById(R.id.img_arrow_from_edit_account).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,10 +44,16 @@ public class EditAccountActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.btn_confirm_modification).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_edit_email_edit_account).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 updateEmail();
+            }
+        });
+
+        findViewById(R.id.btn_edit_password_account).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 updatePassword();
             }
         });
@@ -64,6 +72,11 @@ public class EditAccountActivity extends AppCompatActivity {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
 
                 Boolean success = response.body().getSuccess();
+
+                Toast.makeText(EditAccountActivity.this,"rsl "+response.body().getData().getUser().getEmail(),Toast.LENGTH_LONG).show();
+
+
+                sharedPrefManager.storeEmail(response.body().getData().getUser().getEmail());
                 Toast.makeText(EditAccountActivity.this,"votre email est a jour",Toast.LENGTH_LONG).show();
 
             }

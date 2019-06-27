@@ -39,13 +39,23 @@ public class RegisterActivity extends AppCompatActivity  {
         continueToAdr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendData();
 
+                if(validate()) {
+                    sendData();
+                }
             }
         });
 
+
         Bundle bundle = getIntent().getExtras();
-        phNumber = bundle.getString("phNumber") ;
+
+     //   if (phNumber!=null) {
+            phNumber = bundle.getString("phone_number");
+            Toast.makeText(RegisterActivity.this,"pjNumber "+phNumber,Toast.LENGTH_LONG).show();
+  //      }else {
+    //        Toast.makeText(RegisterActivity.this,"Number aw vide ya rajel "+phNumber,Toast.LENGTH_LONG).show();
+
+      //  }
 
     }
 
@@ -67,6 +77,41 @@ public class RegisterActivity extends AppCompatActivity  {
     }
 
 
+    public Boolean validate() {
+        Boolean value = true;
+
+        if (firsName.getText().toString().trim().equals("")) {
+            firsName.setError(getString(R.string.fiels_is_required));
+            value = false;
+        } else {
+            firsName.setError(null);
+        }
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString().trim()).matches()) {
+            email.setError(getString(R.string.email_invalid));
+            value = false;
+        } else {
+            email.setError(null);
+        }
+        if (lastName.getText().toString().trim().equals("")) {
+            lastName.setError(getString(R.string.email_invalid));
+            value = false;
+        } else {
+            lastName.setError(null);
+        }
+        if (!(password.length() >= 6)) {
+            value = false;
+            password.setError(getString(R.string.password_length));
+        } else {
+            password.setError(null);
+        }
+        if (!password.getText().toString().trim().equals("") && (!confirmPassword.getText().toString().trim().equals(password.getText().toString().trim()))) {
+            value = false;
+            confirmPassword.setError(getString(R.string.password_nomatch));
+        } else {
+            confirmPassword.setError(null);
+        }
+        return value;
+    }
 
 
 

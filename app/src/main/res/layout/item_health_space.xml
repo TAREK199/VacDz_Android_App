@@ -19,7 +19,7 @@
             android:layout_height="64dp"
             android:id="@+id/img_health_space"
             android:layout_marginTop="10dp"
-            android:background="@drawable/cerclebackgroundpurple"
+            android:background="@drawable/syringe"
             android:src="@drawable/ic_phone"
             android:layout_centerHorizontal="true"
             android:padding="10dp"/>

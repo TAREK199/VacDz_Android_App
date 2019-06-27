@@ -21,41 +21,47 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:background="@drawable/img10"
         >
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:id="@+id/img_profile_settings"
-            android:layout_centerInParent="true"
-            app:civ_border_width="2dp"
-            app:civ_border_color="@color/white"
-            android:src="@drawable/img3"
-            />
+
+
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:background="#F2F9FC"
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txt_email_settings"
-            android:layout_below="@+id/img_profile_settings"
-            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
             android:text="REBAI TAREK"
-            android:textColor="@color/white"
+            android:textColor="@color/blue"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:layout_marginTop="10dp"/>
+           />
 
     </RelativeLayout>
+
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="90dp"
+        android:id="@+id/linear_setting_account"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
-        android:background="#E7F6FC"
+        android:background="@color/blue_3"
         >
 
         <LinearLayout
@@ -64,8 +70,9 @@
             android:orientation="horizontal"
             >
             <ImageView
-                android:layout_width="41dp"
-                android:layout_height="40dp"
+                android:layout_width="37dp"
+                android:layout_height="38dp"
+                android:layout_marginLeft="2dp"
                 android:layout_gravity="center"
                 android:background="@drawable/ic_settings_black_24dp"
                 />
@@ -122,9 +129,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="3dp"
+        android:id="@+id/linear_language_account"
         android:orientation="horizontal"
-        android:background="#E7F6FC"
+        android:background="@color/blue_3"
         >
 
         <LinearLayout
@@ -136,6 +144,8 @@
                 android:layout_width="41dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="2dp"
+
                 android:background="@drawable/ic_language_black_24dp"
                 />
 
@@ -190,9 +200,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="1dp"
+        android:id="@+id/linear_bug_account"
+        android:layout_marginTop="3dp"
         android:orientation="horizontal"
-        android:background="@color/gris"
+        android:background="@color/blue_3"
         >
 
         <LinearLayout
@@ -204,6 +215,7 @@
                 android:layout_width="41dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
+                android:layout_marginLeft="2dp"
                 android:background="@drawable/ic_bug_report"
                 />
 
@@ -260,9 +272,9 @@ Faites-le-nous savoir !"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:id="@+id/linear_logout"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="3dp"
         android:orientation="horizontal"
-        android:background="#E7F6FC"
+        android:background="@color/blue_3"
         >
 
         <LinearLayout
@@ -270,18 +282,21 @@ Faites-le-nous savoir !"
             android:layout_height="80dp"
             android:orientation="horizontal"
             >
+
             <ImageView
                 android:layout_width="41dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:background="@drawable/ic_logout"
-                />
+                android:layout_marginLeft="2dp"
+
+                android:background="@drawable/ic_logout" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="270dp"
             android:layout_height="wrap_content"
+            android:id="@+id/linear_logout_account"
             android:orientation="vertical"
             >
 

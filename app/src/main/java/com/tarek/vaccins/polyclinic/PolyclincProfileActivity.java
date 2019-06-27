@@ -20,6 +20,8 @@ import com.tarek.vaccins.R;
 import com.tarek.vaccins.RetrofitInstance;
 import com.tarek.vaccins.SharedPrefManager;
 import com.tarek.vaccins.home.HomeActivity;
+import com.tarek.vaccins.home.RdvActivity;
+import com.tarek.vaccins.model.Plan;
 import com.tarek.vaccins.model.Programme;
 import com.tarek.vaccins.model.Rdv;
 import com.tarek.vaccins.response.PolyclinicResponse;
@@ -38,7 +40,7 @@ import retrofit2.Response;
 public class PolyclincProfileActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView ;
-    private List<Programme> programmes ;
+    private List<Plan> programmes ;
     private Button prendrRdv , confirmeRdv ;
     private String date ;
     private TextView polyName,polyAdress,polyTel ;
@@ -101,12 +103,9 @@ public class PolyclincProfileActivity extends AppCompatActivity {
                 month = month + 1;
                // Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
 
-                date = month + "-" + day+"-" +year+"T13:34:00.000";
-              //  mDisplayDate.setText(date);
-
+                date = year + "-" +"0"+month+"-" +day;//+"T13:34:00.000";
                 prendrRdv.setVisibility(View.GONE);
                 confirmeRdv.setVisibility(View.VISIBLE);
-                Toast.makeText(PolyclincProfileActivity.this,date,Toast.LENGTH_LONG).show();
             }
         };
 
@@ -128,7 +127,7 @@ public class PolyclincProfileActivity extends AppCompatActivity {
                 alertDialog2.setIcon(android.R.drawable.ic_dialog_alert);
 
 // Setting Positive "Yes" Btn
-                alertDialog2.setPositiveButton("YES",
+                alertDialog2.setPositiveButton("OUI",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // Write your code here to execute after dialog
@@ -137,7 +136,7 @@ public class PolyclincProfileActivity extends AppCompatActivity {
                         });
 
 // Setting Negative "NO" Btn
-                alertDialog2.setNegativeButton("NO",
+                alertDialog2.setNegativeButton("NON",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // Write your code here to execute after dialog
@@ -154,29 +153,31 @@ public class PolyclincProfileActivity extends AppCompatActivity {
         });
     }
 
-    //     .setIcon(android.R.drawable.ic_dialog_alert);
-
-
    public void viewData(){
 
         recyclerView = findViewById(R.id.recycle_profile_poly);
-        programmes = new ArrayList<>();
 
-        programmes.add(new Programme("Dimanche","2Mois + 4Mois"));
+   //     programmes = new ArrayList<>();
+      /*  programmes.add(new Programme("Dimanche","2Mois + 4Mois"));
         programmes.add(new Programme("Lundi","1Mois + 3mois"));
         programmes.add(new Programme("Mardi","2Mois"));
         programmes.add(new Programme("Mercredi","2Mois"));
-        programmes.add(new Programme("jeudi","2Mois"));
+        programmes.add(new Programme("jeudi","2Mois"));*/
 
-        ProgrammPolyHorizontalAdapter programmPolyHorizontalAdapter = new ProgrammPolyHorizontalAdapter(PolyclincProfileActivity.this,programmes);
+       programmes.add(new Plan(1,"BCG"));
+       programmes.add(new Plan(1,"BCG"));
+       programmes.add(new Plan(1,"BCG"));
+       programmes.add(new Plan(1,"BCG"));
+       programmes.add(new Plan(1,"BCG"));
+
+
+       ProgrammPolyHorizontalAdapter programmPolyHorizontalAdapter = new ProgrammPolyHorizontalAdapter(PolyclincProfileActivity.this,programmes);
         LinearLayoutManager horizontalLayoutManager
                 = new LinearLayoutManager(PolyclincProfileActivity.this, LinearLayoutManager.HORIZONTAL, false);
-     //   recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setLayoutManager(horizontalLayoutManager);
-       // RecyclerView.LayoutManager layoutManager = new GridLayoutManager(PolyclincProfileActivity.this,1);
-        //recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(programmPolyHorizontalAdapter);
     }
+
    public void getInfo() {
 
         PolyclinicService polyclinicService = RetrofitInstance.polyclinicInstance();
@@ -187,14 +188,24 @@ public class PolyclincProfileActivity extends AppCompatActivity {
 
                 Boolean success = response.body().getSuccess();
 
-                if (success){
-
+                if (success) {
                     polyName.setText(response.body().getData().getPolyclinique().getPolyName());
                     polyAdress.setText(response.body().getData().getPolyclinique().getPolyAdress());
                     polyTel.setText(response.body().getData().getPolyclinique().getTel());
+
+/*
+                    programmes = new ArrayList<>();
+                    for (int i=0 ;i<response.body().getData().getPlan().size();i++){
+
+                        programmes.add(new Plan(response.body().getData().getPlan().get(i).getJour(),
+                                                     response.body().getData().getPlan().get(i).getVaccin()));
+                    }
                 }
                 else {
                     Toast.makeText(PolyclincProfileActivity.this,"no data to display",Toast.LENGTH_LONG).show();
+                }
+
+            }*/
 
                 }
 
@@ -213,13 +224,20 @@ public class PolyclincProfileActivity extends AppCompatActivity {
 
             FatherService fatherService = RetrofitInstance.fatherInstance();
 
-            fatherService.prenRdv("Bearer " +token, new Rdv(childId, polyId, "2019-06-15T13:34:00.000\n")).enqueue(new Callback<RdvAddResponse>() {
+       fatherService.prenRdv("Bearer " +token, new Rdv(childId, polyId, date+"T08:00:00.000\n")).enqueue(new Callback<RdvAddResponse>() {
                 @Override
                 public void onResponse(Call<RdvAddResponse> call, Response<RdvAddResponse> response) {
 
                     Boolean success = response.body().getSuccess();
-                    Toast.makeText(PolyclincProfileActivity.this, "votre RDV est pris en charge", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(PolyclincProfileActivity.this, HomeActivity.class));
+
+                    if (success) {
+                        Toast.makeText(PolyclincProfileActivity.this, "votre RDV est pris en charge : " + success, Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(PolyclincProfileActivity.this, RdvActivity.class));
+
+                    }else {
+                        Toast.makeText(PolyclincProfileActivity.this, "votre RDV n'est pris en charge : " + success, Toast.LENGTH_LONG).show();
+
+                    }
                 }
 
                 @Override

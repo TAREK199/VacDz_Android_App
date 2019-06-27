@@ -16,9 +16,8 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.tarek.vaccins.R;
 import com.tarek.vaccins.RetrofitInstance;
 import com.tarek.vaccins.SharedPrefManager;
-import com.tarek.vaccins.home.HomeActivity;
 import com.tarek.vaccins.model.Polyclinic;
-import com.tarek.vaccins.records.VaccinActivity;
+import com.tarek.vaccins.records.VaccinationActivity;
 import com.tarek.vaccins.service.PolyclinicService;
 
 import java.util.ArrayList;
@@ -63,11 +62,11 @@ public class PolyclinicActivity extends AppCompatActivity {
         findViewById(R.id.img_from_poly).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PolyclinicActivity.this, VaccinActivity.class));
+                startActivity(new Intent(PolyclinicActivity.this, VaccinationActivity.class));
             }
         });
 
-        /*
+
         polyclinicAdapater = new PolyclinicAdapater(PolyclinicActivity.this,polyclinicList);
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
@@ -80,12 +79,12 @@ public class PolyclinicActivity extends AppCompatActivity {
 
                 polyclinicAdapater.getFilter().filter(query);
 
-                Toast.makeText(PolyclinicActivity.this,"eeh textchange",Toast.LENGTH_LONG).show();
+                Toast.makeText(PolyclinicActivity.this,"eeh text change " +query,Toast.LENGTH_LONG).show();
 
                 return false;
             }
         });
-*/
+
 
         findViewById(R.id.btn_from_polyclinics).setOnClickListener(new View.OnClickListener() {
             @Override

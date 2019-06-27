@@ -13,10 +13,6 @@
         android:icon="@drawable/ic_child_white"
         android:title="MES ENFANTS" />
     <item
-        android:id="@+id/nav_home_appoinment"
-        android:icon="@drawable/ic_apponment"
-        android:title="RENDEZ-VOUS" />
-    <item
         android:id="@+id/nav_home_father_profile"
         android:icon="@drawable/ic_person_black_24dp"
         android:title="MY PROFILE" />

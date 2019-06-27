@@ -10,14 +10,17 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tarek.vaccins.R;
 import com.tarek.vaccins.RetrofitInstance;
 import com.tarek.vaccins.SharedPrefManager;
-import com.tarek.vaccins.notification.NotificationActivity;
 import com.tarek.vaccins.response.DeviceTokenResponse;
+import com.tarek.vaccins.response.RdvResponse;
 import com.tarek.vaccins.service.FatherService;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,9 +32,10 @@ public class HomeActivity extends AppCompatActivity {
     private BottomNavigationView navigationMenu ;
     private ChildrensFragment childrensFragment;
     private HealthSpaceFragment healthSpaceFragment;
-    private FragmentRdv fragmentRdv;
     private FatherProfileFragment fatherProfileFragment ;
     private SharedPrefManager sharedPrefManager ;
+    private TextView rdvCounter ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,9 @@ public class HomeActivity extends AppCompatActivity {
 
         frameLayout = findViewById(R.id.frame_home);
         navigationMenu = findViewById(R.id.bottomnav_home_nav);
+
+        rdvCounter = findViewById(R.id.txt_rdv_count_home) ;
+
 
         sharedPrefManager = new SharedPrefManager(HomeActivity.this);
 
@@ -52,9 +59,13 @@ public class HomeActivity extends AppCompatActivity {
 
         childrensFragment = new ChildrensFragment();
         healthSpaceFragment = new HealthSpaceFragment();
-        fragmentRdv = new FragmentRdv();
         fatherProfileFragment = new FatherProfileFragment() ;
 
+        getRdvs();
+
+        FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+        tx.replace(R.id.frame_home, new HealthSpaceFragment());
+        tx.commit();
 
         navigationMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -69,10 +80,6 @@ public class HomeActivity extends AppCompatActivity {
                         setFragment(childrensFragment);
                         return true;
 
-                    case R.id.nav_home_appoinment:
-                        setFragment(fragmentRdv);
-                        return true;
-
                     case R.id.nav_home_father_profile:
                         setFragment(fatherProfileFragment);
                         return true;
@@ -84,10 +91,10 @@ public class HomeActivity extends AppCompatActivity {
 
         });
 
-        findViewById(R.id.img_notification_home).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.img_rdv_home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, NotificationActivity.class));
+                startActivity(new Intent(HomeActivity.this, RdvActivity.class));
             }
         });
 
@@ -98,7 +105,6 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_home,fragment);
         fragmentTransaction.commit();
     }
-
 
     public void sendDeviceToken(){
 
@@ -124,5 +130,32 @@ public class HomeActivity extends AppCompatActivity {
         });
 
     }
+    public void getRdvs(){
+
+        String token = sharedPrefManager.getToken();
+        int id = sharedPrefManager.getIdFather();
+
+        FatherService fatherService = RetrofitInstance.fatherInstance();
+
+        fatherService.getRdvs("Bearer "+token,id).enqueue(new Callback<RdvResponse>() {
+            @Override
+            public void onResponse(Call<RdvResponse> call, Response<RdvResponse> response) {
+
+
+                if(response.body().getData().size()!=0) {
+                    rdvCounter.setText(String.valueOf(response.body().getData().size()));
+                }else
+                    rdvCounter.setText(" ");
+
+            }
+
+            @Override
+            public void onFailure(Call<RdvResponse> call, Throwable t) {
+                Toast.makeText(HomeActivity.this,"problem : "+t.getMessage(),Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
+
 
 }

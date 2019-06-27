@@ -81,7 +81,6 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
         });
 
         getWilayas();
-        getCommune();
     }
 
     @Override
@@ -107,6 +106,7 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
     }
 
     public void fatherRegister(){
+
         Intent intent = getIntent();
            firsrName = intent.getStringExtra("firstName");
            lastName = intent.getStringExtra("lastName");
@@ -114,54 +114,54 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
            email = intent.getStringExtra("email");
            password = intent.getStringExtra("password");
 
+           if (validate()) {
 
-        identityNumberChar = identityNumber.getText().toString();
-        int in = Integer.valueOf(identityNumber.getText().toString());
+               identityNumberChar = identityNumber.getText().toString();
+               int in = Integer.valueOf(identityNumber.getText().toString());
 
+               FatherService fatherService = RetrofitInstance.fatherInstance();
 
+               Toast.makeText(InfoAdressActivity.this,email,Toast.LENGTH_LONG).show();
+               Toast.makeText(InfoAdressActivity.this,password,Toast.LENGTH_LONG).show();
+               Toast.makeText(InfoAdressActivity.this,firsrName,Toast.LENGTH_LONG).show();
+               Toast.makeText(InfoAdressActivity.this,lastName,Toast.LENGTH_LONG).show();
+               Toast.makeText(InfoAdressActivity.this,phoneNumber,Toast.LENGTH_LONG).show();
+               fatherService.register(new Father("1", email, password, firsrName, lastName, phoneNumber , "setif", "setif", in)).enqueue(new Callback<FatherResponse>() {
 
-
-        FatherService fatherService = RetrofitInstance.fatherInstance();
-
-        fatherService.register(new Father("1",email,"123",firsrName,lastName,phoneNumber,"setif","12455",in)).enqueue(new Callback<FatherResponse>() {
-
-                @Override
-            public void onResponse(Call<FatherResponse> call, Response<FatherResponse> response) {
-
-
-                    Boolean succes = response.body().getSuccess();
-
-
-
-                    if (succes) {
-                        Toast.makeText(InfoAdressActivity.this, "success : " + succes, Toast.LENGTH_SHORT).show();
-
-                            String token = response.body().getData().getToken();
-                            int id = response.body().getData().getFather().getFatherId();
-                            int userId = response.body().getData().getUser().getId();
-                            String email = response.body().getData().getUser().getEmail();
-
-                            sharedPrefManager.fatherRegister(id,userId,email,token);
-
-                            startActivity(new Intent(InfoAdressActivity.this, HomeActivity.class));
-
-                    }else {
-                        Toast.makeText(InfoAdressActivity.this, "compte existe déja", Toast.LENGTH_SHORT).show();
-
-                    }
-
-            }
-
-            @Override
-            public void onFailure(Call<FatherResponse> call, Throwable t) {
-                Toast.makeText(InfoAdressActivity.this,"problem : "+t.getMessage().toString(),Toast.LENGTH_SHORT).show();
-
-            }
-        });
+                   @Override
+                   public void onResponse(Call<FatherResponse> call, Response<FatherResponse> response) {
 
 
+                       Boolean succes = response.body().getSuccess();
+
+                       Toast.makeText(InfoAdressActivity.this, "response " + succes, Toast.LENGTH_SHORT).show();
+
+                       if (succes) {
+                           Toast.makeText(InfoAdressActivity.this, "success : " + succes, Toast.LENGTH_SHORT).show();
+
+                           String token = response.body().getData().getToken();
+                           int id = response.body().getData().getFather().getFatherId();
+                           int userId = response.body().getData().getUser().getId();
+                           String email = response.body().getData().getUser().getEmail();
+
+                           sharedPrefManager.fatherRegister(id, userId, email, token);
+
+                           startActivity(new Intent(InfoAdressActivity.this, HomeActivity.class));
+
+                       } else {
+                           Toast.makeText(InfoAdressActivity.this, "error", Toast.LENGTH_SHORT).show();
+
+                       }
+                   }
+                   @Override
+                   public void onFailure(Call<FatherResponse> call, Throwable t) {
+                       Toast.makeText(InfoAdressActivity.this, "problem : " + t.getMessage().toString(), Toast.LENGTH_SHORT).show();
+
+                   }
+               });
+
+           }
     }
-
 
     public void viewData(){
         recyclerViewWilaya = findViewById(R.id.recycle_wilaya_register);
@@ -173,17 +173,12 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
 
     public void getWilayas(){
 
-        String token = sharedPrefManager.getToken();
-
         FatherService fatherService = RetrofitInstance.fatherInstance();
-        fatherService.getWilayas("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImUxYmViYWY2NjU2MDg3ZDZhMDYzYjUzYjhiY2JiZDIxMDUxNzAzMGY1Njg4NjhlMzZiODVhYjYyOGE2MjU5ZTRlYmNiZjgxMmFmMGY5NDNiIn0.eyJhdWQiOiIxIiwianRpIjoiZTFiZWJhZjY2NTYwODdkNmEwNjNiNTNiOGJjYmJkMjEwNTE3MDMwZjU2ODg2OGUzNmI4NWFiNjI4YTYyNTllNGViY2JmODEyYWYwZjk0M2IiLCJpYXQiOjE1NjA1NTUxODQsIm5iZiI6MTU2MDU1NTE4NCwiZXhwIjoxNTkyMTc3NTg0LCJzdWIiOiIxNyIsInNjb3BlcyI6W119.moqYF6-XE0Wz5CXyXakvIPvQ2nRoiuVz3z72FlPLJr2gLmdOUd3leCwPZdHRmvlQrqRViC3tKnOR3bTfZRuBUYekLwd9q-XRxqB8d6S-GPJpoWhEAlpPMvCbOjpnU5hvX1CtOSOUpG9Qz_FW6r9NZNp0f8sxX0PUZ8nMX8vYHXDCcIeiMMV1IHX0B7TEYnab2piNP6iWi99k0xV8uf0qo4u8d5mK32zZmP6MCmYPKZtMG45vXtJXNqSqVwfksNM883Z1wmpGbP0hjktM8-BIJ4hMuLL5cdyKxBwJiLlsi12IOR3Fq4HCyTalYxXeAMc8zZcER2eJmXXVPQNnp7e0yfV4O7xzy1lhNiYCuUAfOti-PIHYTrY0VufMwbtCdbgJHDlyXqx0qBgNAGL8BShWGM-8C1Zq8wcMoJkHgjGmOHiB9JatOieb_kEViCb_FJy4YYK6GpZm6F-dNHN_GJCtcjuYgTQOMCF-v0TJp05PrCfRQA5jwmXLYVFRHO0EXqhn6ficRHaFwPtbVoq3qTCgMJ80BH2ZdWs1rtv8o9WykVjPJ2PVdtTpIaU7W9FjGalwlzhvh6Qjr7o9WoDNvAkhFE79GL1luaIE82UV9x-or5w-4guTSVYInIf8Y7Jza_AZyWUVmMmu73-jkcJdl9cVGaeqvHn8QmFqf4ZA6OtEcus").enqueue(new Callback<WilayaResponse>() {
+        fatherService.getWilayasRegister().enqueue(new Callback<WilayaResponse>() {
             @Override
             public void onResponse(Call<WilayaResponse> call, Response<WilayaResponse> response) {
 
                 Boolean success = response.body().getSuccess();
-
-                Toast.makeText(InfoAdressActivity.this,"no wialaya to display : "+success,Toast.LENGTH_LONG).show();
-
                 if (success){
                     wilayaList = new ArrayList<>();
                     wilayaList = response.body().getData();
@@ -201,26 +196,18 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
 
     }
 
-    public void getCommune(){
-        String token = sharedPrefManager.getToken();
-        FatherService fatherService = RetrofitInstance.fatherInstance();
 
-        fatherService.getCommunes("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImUxYmViYWY2NjU2MDg3ZDZhMDYzYjUzYjhiY2JiZDIxMDUxNzAzMGY1Njg4NjhlMzZiODVhYjYyOGE2MjU5ZTRlYmNiZjgxMmFmMGY5NDNiIn0.eyJhdWQiOiIxIiwianRpIjoiZTFiZWJhZjY2NTYwODdkNmEwNjNiNTNiOGJjYmJkMjEwNTE3MDMwZjU2ODg2OGUzNmI4NWFiNjI4YTYyNTllNGViY2JmODEyYWYwZjk0M2IiLCJpYXQiOjE1NjA1NTUxODQsIm5iZiI6MTU2MDU1NTE4NCwiZXhwIjoxNTkyMTc3NTg0LCJzdWIiOiIxNyIsInNjb3BlcyI6W119.moqYF6-XE0Wz5CXyXakvIPvQ2nRoiuVz3z72FlPLJr2gLmdOUd3leCwPZdHRmvlQrqRViC3tKnOR3bTfZRuBUYekLwd9q-XRxqB8d6S-GPJpoWhEAlpPMvCbOjpnU5hvX1CtOSOUpG9Qz_FW6r9NZNp0f8sxX0PUZ8nMX8vYHXDCcIeiMMV1IHX0B7TEYnab2piNP6iWi99k0xV8uf0qo4u8d5mK32zZmP6MCmYPKZtMG45vXtJXNqSqVwfksNM883Z1wmpGbP0hjktM8-BIJ4hMuLL5cdyKxBwJiLlsi12IOR3Fq4HCyTalYxXeAMc8zZcER2eJmXXVPQNnp7e0yfV4O7xzy1lhNiYCuUAfOti-PIHYTrY0VufMwbtCdbgJHDlyXqx0qBgNAGL8BShWGM-8C1Zq8wcMoJkHgjGmOHiB9JatOieb_kEViCb_FJy4YYK6GpZm6F-dNHN_GJCtcjuYgTQOMCF-v0TJp05PrCfRQA5jwmXLYVFRHO0EXqhn6ficRHaFwPtbVoq3qTCgMJ80BH2ZdWs1rtv8o9WykVjPJ2PVdtTpIaU7W9FjGalwlzhvh6Qjr7o9WoDNvAkhFE79GL1luaIE82UV9x-or5w-4guTSVYInIf8Y7Jza_AZyWUVmMmu73-jkcJdl9cVGaeqvHn8QmFqf4ZA6OtEcus",19).enqueue(new Callback<CommuneResponse>() {
-            @Override
-            public void onResponse(Call<CommuneResponse> call, Response<CommuneResponse> response) {
-
-                Boolean success = response.body().getSuccess();
-
-                if(!success)
-                    Toast.makeText(InfoAdressActivity.this,"no commune to display : "+success,Toast.LENGTH_LONG).show();
-            }
-            @Override
-            public void onFailure(Call<CommuneResponse> call, Throwable t) {
-                Toast.makeText(InfoAdressActivity.this,"problem "+t.getMessage(),Toast.LENGTH_LONG).show();
-            }
-        });
+    public Boolean validate() {
+        Boolean value = true;
 
 
+        if (!(identityNumber.length() >= 6)) {
+            value = false;
+            identityNumber.setError(getString(R.string.password_length));
+        } else {
+            identityNumber.setError(null);
+        }
+
+        return value;
     }
-
 }

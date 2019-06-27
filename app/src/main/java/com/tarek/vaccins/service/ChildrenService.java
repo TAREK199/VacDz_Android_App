@@ -36,4 +36,9 @@ public interface ChildrenService {
     @GET("enfants/{id}/vaccinations/{age}")
     Call<VaccinationResponse> getChldrenVaccination(@Header("Authorization") String token, @Path("id") int id, @Path("age") int age);
 
+
+    @Headers("Accept: application/json")
+    @GET("enfants/{id}/vaccinations/{age}")
+    Call<VaccinationResponse> getChildrenVaccinations(@Header("Authorization") String token, @Path("id") int id, @Path("age") int age);
+
 }

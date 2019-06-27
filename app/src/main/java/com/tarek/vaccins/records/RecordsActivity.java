@@ -33,6 +33,11 @@ public class RecordsActivity extends AppCompatActivity {
         calendarVaccinationFragment = new CalendarVaccinationFragment();
         childProfileFragment = new ChildProfileFragment();
 
+
+        FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+        tx.replace(R.id.frame_childrens_main_nav, new CalendarVaccinationFragment());
+        tx.commit();
+
         navigationMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

@@ -80,6 +80,16 @@ public class SharedPrefManager {
     }
 
 
+    public boolean storeEmail(String email)
+    {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_EMAIL_FATHER,email);
+        editor.apply();
+        return true;
+    }
+
+
     public boolean storeCommune(String communeName)
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME,Context.MODE_PRIVATE);

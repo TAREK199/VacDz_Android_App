@@ -73,7 +73,7 @@ public class WilayaAdapter extends RecyclerView.Adapter<WilayaAdapter.MyViewHold
             public void onClick(View v) {
 
                 wilaya_id = mData.get(pos).getId();
-                 showCommune();
+                showCommune();
             }
         });
 
@@ -102,10 +102,7 @@ public class WilayaAdapter extends RecyclerView.Adapter<WilayaAdapter.MyViewHold
                     }
                 }else {
                     Toast.makeText(context,"no data to display "+success,Toast.LENGTH_LONG).show();
-
                 }
-
-
             }
 
             @Override
@@ -114,7 +111,6 @@ public class WilayaAdapter extends RecyclerView.Adapter<WilayaAdapter.MyViewHold
                 Toast.makeText(context,"problem "+t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
-
     }
     public void showCommune(){
         AlertDialog.Builder builderSingle = new AlertDialog.Builder(context,R.style.AlertDialogTheme);
@@ -154,6 +150,8 @@ public class WilayaAdapter extends RecyclerView.Adapter<WilayaAdapter.MyViewHold
         builderSingle.show();
 
     }
+
+
         public static class MyViewHolderWilaya extends RecyclerView.ViewHolder{
 
         private TextView wilayaNumber, wilayaName;

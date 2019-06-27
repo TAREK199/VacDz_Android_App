@@ -18,24 +18,29 @@
         <activity android:name=".NotificationHelper" />
         <activity android:name=".home.VaccinInfosActivity" />
         <activity android:name=".home.SettingActivity" />
-        <activity android:name=".notification.NotificationActivity" />
+        <activity android:name=".home.RdvActivity" />
         <activity android:name=".edit.EditFatherProfile" />
         <activity android:name=".register.PhoneRegisterActivity" />
         <activity android:name=".polyclinic.PolyclincProfileActivity" />
         <activity android:name=".notification.TestNotification" />
         <activity android:name=".polyclinic.PolyclinicActivity" />
-        <activity android:name=".records.VaccinActivity" />
+        <activity android:name=".records.VaccinationActivity" />
         <activity android:name=".records.RecordsActivity" />
         <activity android:name=".register.InfoAdressActivity" />
         <activity android:name=".register.RegisterActivity" />
         <activity android:name=".login.LoginActivity" />
+        <activity android:name=".login.SplashActivity" >
+
+        </activity>
         <activity android:name=".register.WelcomeActivity" />
         <activity android:name=".register.IntroActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".home.HomeActivity" />
 

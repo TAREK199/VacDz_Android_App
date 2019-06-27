@@ -12,6 +12,7 @@ import com.tarek.vaccins.response.FatherResponse;
 import com.tarek.vaccins.response.LoginResponse;
 import com.tarek.vaccins.response.RdvAddResponse;
 import com.tarek.vaccins.response.RdvResponse;
+import com.tarek.vaccins.response.RdvsChildrenResponse;
 import com.tarek.vaccins.response.UserResponse;
 import com.tarek.vaccins.response.WilayaResponse;
 
@@ -64,6 +65,10 @@ public interface FatherService {
 
 
     @Headers("Accept: application/json")
+    @GET("rdvs/enfant/{id}")
+    Call<RdvsChildrenResponse> getChildrenRdvs(@Header("Authorization") String token, @Path("id") int id);
+
+    @Headers("Accept: application/json")
     @GET("wilayas")
     Call<WilayaResponse> getWilayas(@Header("Authorization") String token);
 
@@ -71,6 +76,16 @@ public interface FatherService {
     @Headers("Accept: application/json")
     @GET("communes")
     Call<CommuneResponse> getCommunes(@Header("Authorization") String token, @Query("id") int id);
+
+
+    @Headers("Accept: application/json")
+    @GET("wilayasregister")
+    Call<WilayaResponse> getWilayasRegister();
+
+
+    @Headers("Accept: application/json")
+    @GET("communesregister")
+    Call<CommuneResponse> getCommunesRegister(@Query("id") int id);
 
 
 

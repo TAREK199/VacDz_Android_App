@@ -57,6 +57,7 @@ public class HealthSpaceFragment extends Fragment {
 
         viewData();
         return view;
+
     }
 
 
@@ -64,13 +65,14 @@ public class HealthSpaceFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycle_health_space);
         healthAdvices = new ArrayList<>();
 
-        healthAdvices.add(new HealthSpace("Recherche",R.drawable.child));
-        healthAdvices.add(new HealthSpace("Recherche",R.drawable.child));
-        healthAdvices.add(new HealthSpace("Recherche",R.drawable.child));
-        healthAdvices.add(new HealthSpace("Recherche",R.drawable.child));
-        healthAdvices.add(new HealthSpace("Recherche",R.drawable.child));
-        healthAdvices.add(new HealthSpace("Recherche",R.drawable.child));
-        healthAdvices.add(new HealthSpace("Recherche",R.drawable.child));
+        healthAdvices.add(new HealthSpace("VACCIN",R.drawable.syringe));
+        healthAdvices.add(new HealthSpace("ROR",R.drawable.syringe));
+        healthAdvices.add(new HealthSpace("DTC",R.drawable.syringe));
+        healthAdvices.add(new HealthSpace("VPO",R.drawable.syringe));
+        healthAdvices.add(new HealthSpace("BCF",R.drawable.syringe));
+        healthAdvices.add(new HealthSpace("HVB",R.drawable.syringe));
+        healthAdvices.add(new HealthSpace("PNEUMO",R.drawable.syringe));
+        healthAdvices.add(new HealthSpace("HIB",R.drawable.syringe));
 
 
         HealthSpaceAdapter healthSpaceAdapter = new HealthSpaceAdapter(getActivity(),healthAdvices);

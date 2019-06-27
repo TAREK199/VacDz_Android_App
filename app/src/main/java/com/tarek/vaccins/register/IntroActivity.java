@@ -17,6 +17,7 @@ import android.support.design.widget.TabLayout;
 import com.tarek.vaccins.home.HomeActivity;
 import com.tarek.vaccins.R;
 import com.tarek.vaccins.login.LoginActivity;
+import com.tarek.vaccins.login.SplashActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,7 @@ public class IntroActivity extends AppCompatActivity {
 
         // when this activity is about to be launch we need to check if its openened before or not
         if (restorePrefData()) {
-            Intent mainActivity = new Intent(getApplicationContext(), LoginActivity.class );
+            Intent mainActivity = new Intent(getApplicationContext(), SplashActivity.class);
             startActivity(mainActivity);
             finish();
         }

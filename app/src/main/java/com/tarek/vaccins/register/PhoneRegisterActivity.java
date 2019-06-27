@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +50,8 @@ public class PhoneRegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_phone_register);
 
         mPhoneNumber = findViewById(R.id.phoneNumber);
+
+
         code = findViewById(R.id.code);
         sendCode = findViewById(R.id.sendCode);
         resendCode = findViewById(R.id.resendCode);
@@ -65,6 +68,16 @@ public class PhoneRegisterActivity extends AppCompatActivity {
         sendCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                /*
+         //       if (TextUtils.isEmpty(mPhoneNumber.getText())){
+                    if (mPhoneNumber.getText().toString().equals("")){
+                        Toast.makeText(PhoneRegisterActivity.this,"pleasse enter phone number",Toast.LENGTH_LONG).show();
+                }else {
+                        Toast.makeText(PhoneRegisterActivity.this,"sahit",Toast.LENGTH_LONG).show();
+                }
+*/
+
                 sendCode(view);
             }
         });
@@ -96,8 +109,15 @@ public class PhoneRegisterActivity extends AppCompatActivity {
 
     public void sendCode(View view){
 
-        String phNumber = mPhoneNumber.getText().toString();
 
+        String phNumber = mPhoneNumber.getText().toString();
+/*
+        if (mPhoneNumber.getText().toString().trim().length()==0){
+            Toast.makeText(PhoneRegisterActivity.this,"pleasse enter phone number",Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(PhoneRegisterActivity.this,"sahit",Toast.LENGTH_LONG).show();
+        }
+*/
         setUpVerificationCallbacks();
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
@@ -106,11 +126,11 @@ public class PhoneRegisterActivity extends AppCompatActivity {
                 TimeUnit.SECONDS,
                 this,
                 verificationCallbacks);
-
         resendCode.setVisibility(View.VISIBLE);
         Toast.makeText(PhoneRegisterActivity.this,"message send",Toast.LENGTH_LONG).show();
 
     }
+
     public  void resendCode (View view){
 
         String phNumber = mPhoneNumber.getText().toString();
@@ -139,9 +159,10 @@ public class PhoneRegisterActivity extends AppCompatActivity {
 
                     String phNumber = mPhoneNumber.getText().toString();
 
-                    Toast.makeText(PhoneRegisterActivity.this,"aw rayah : "+phNumber,Toast.LENGTH_LONG).show();
+                    Toast.makeText(PhoneRegisterActivity.this,"ph number is " +phNumber,Toast.LENGTH_LONG).show();
+
                     Intent intent = new Intent(PhoneRegisterActivity.this,RegisterActivity.class);
-                    intent.putExtra("phNumber",phNumber);
+                    intent.putExtra("phone_number",phNumber);
                     startActivity(intent);
 
                     finish();
@@ -174,7 +195,7 @@ public class PhoneRegisterActivity extends AppCompatActivity {
                         });
                     }
                 }else if(task.getException() instanceof FirebaseAuthInvalidCredentialsException){
-                    // the verification code entred was invalid
+                    Toast.makeText(PhoneRegisterActivity.this,"code invalid ",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -217,8 +238,6 @@ public class PhoneRegisterActivity extends AppCompatActivity {
             }
         };
     }
-
-
 
 
     public void verifyCode(View view){

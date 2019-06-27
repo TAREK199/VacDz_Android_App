@@ -71,17 +71,20 @@
 
                 <ImageView
                     android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/ic_phone"
                     android:layout_marginLeft="30dp"
+                    android:layout_gravity="center"
+
 
                     />
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="25dp"
+                    android:layout_height="wrap_content"
                     android:id="@+id/txt_father_phone_number"
                     android:text="0699289437"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center"
                     />
 
             </LinearLayout>
@@ -95,23 +98,25 @@
                 android:orientation="horizontal"
                 >
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="30dp"
+                    >
                 <ImageView
-                    android:layout_width="40dp"
+                    android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/ic_location"
-                    android:layout_marginLeft="30dp"
+                    android:layout_centerInParent="true"
                     />
 
-                </LinearLayout>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="0dp"
                     >
             <TextView
                 android:layout_width="match_parent"
@@ -147,7 +152,7 @@
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_edit_father_profile"
-                    android:text="EDIT PROFILE"
+                    android:text="MODIFIER"
                     android:textColor="@color/black"
                     android:background="@drawable/ic_edittextstyle"
                     android:layout_gravity="center"

@@ -44,10 +44,10 @@ public class VaccinationResponse {
         @Expose
         private List<Vaccination> vaccinations = null;
 
+
         public List<Vaccin> getVaccins() {
             return vaccins;
         }
-
         public void setVaccins(List<Vaccin> vaccins) {
             this.vaccins = vaccins;
         }

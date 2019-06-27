@@ -30,7 +30,7 @@ public class EditFatherProfile extends AppCompatActivity {
     private TextWatcher textWatcher ;
     private EditText firstName,lastName,adresse,phoneNumber1,phoneNumber2;
     private TextView identityNumber;
-    private String firstNameChar,lastnameChar,adresseChar,phoneNmbr1Char,phoneNbr2Char,identityNumberChar;
+    private String firstNameChar,lastnameChar,adresseChar,phoneNbr1Char,phoneNbr2Char,identityNumberChar;
 
     SharedPrefManager sharedPrefManager ;
 
@@ -41,8 +41,6 @@ public class EditFatherProfile extends AppCompatActivity {
         setContentView(R.layout.activity_edit_father_profile);
 
         sharedPrefManager = new SharedPrefManager(EditFatherProfile.this);
-
-
 
         firstName = findViewById(R.id.edt_edit_profile_firsttname);
         lastName = findViewById(R.id.edt_edit_profile_lastname);
@@ -140,15 +138,19 @@ public class EditFatherProfile extends AppCompatActivity {
         firstNameChar = firstName.getText().toString().trim();
         lastnameChar = lastName.getText().toString().trim();
         adresseChar = adresse.getText().toString().trim();
-        phoneNbr2Char = phoneNumber1.getText().toString().trim();
-        phoneNmbr1Char = phoneNumber2.getText().toString().trim();
+        phoneNbr1Char = phoneNumber1.getText().toString().trim();
+        phoneNbr2Char = phoneNumber2.getText().toString().trim();
+
+        Toast.makeText(EditFatherProfile.this,"phone 1"+phoneNbr1Char,Toast.LENGTH_LONG).show();
+        Toast.makeText(EditFatherProfile.this,"phone 2"+phoneNbr2Char,Toast.LENGTH_LONG).show();
+
 
         String token = sharedPrefManager.getToken();
         int userId = sharedPrefManager.getUserId();
 
         FatherService fatherService = RetrofitInstance.fatherInstance();
 
-        fatherService.editFatherProfile("Bearer "+token,userId,new Father(firstNameChar,lastnameChar,phoneNmbr1Char,phoneNbr2Char,adresseChar,"45")).enqueue(new Callback<FatherProfileResponse>() {
+        fatherService.editFatherProfile("Bearer "+token,userId,new Father(firstNameChar,lastnameChar,phoneNbr1Char,phoneNbr2Char,adresseChar,"45")).enqueue(new Callback<FatherProfileResponse>() {
             @Override
             public void onResponse(Call<FatherProfileResponse> call, Response<FatherProfileResponse> response) {
 
