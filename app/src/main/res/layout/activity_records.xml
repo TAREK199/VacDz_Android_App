@@ -14,13 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar_record"
-        android:background="@color/white">
+        android:background="@color/blue">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/img_arrow_from_record"
-            android:background="@drawable/ic_keyboard_arrow_left_black" />
+            android:background="@drawable/ic_keyboard_arrow_left_white" />
     </android.support.v7.widget.Toolbar>
 
 
@@ -28,19 +28,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/frame_childrens_main_nav"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
      android:layout_below="@+id/toolbar_record"
         android:layout_above="@+id/bottomnav_childrens_main_nav"
 
         ></FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
         android:layout_height="50dp"
         android:id="@+id/bottomnav_childrens_main_nav"
         android:layout_alignParentBottom="true"
         app:menu="@menu/nav_items"
-        app:itemBackground="@color/blue"
+        app:itemBackground="@color/white"
         app:itemIconTint="@color/nav_item_colors"
         app:itemTextColor="@color/nav_item_colors">
 

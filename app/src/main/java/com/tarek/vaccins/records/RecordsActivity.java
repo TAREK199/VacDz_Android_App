@@ -43,7 +43,6 @@ public class RecordsActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 switch (item.getItemId()){
-
                     case R.id.nav_vaccination_child:
                         setFragment(calendarVaccinationFragment);
                         return true;

@@ -13,19 +13,52 @@
         android:id="@+id/toolbar_rdv"
         android:background="@color/blue">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/img_arrow_from_notification"
-            android:background="@drawable/ic_keyboard_arrow_left_white" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/img_arrow_from_notification"
+                android:background="@drawable/ic_keyboard_arrow_left_white"
+                android:layout_centerVertical="true"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RDVs"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"
+                />
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_rdv_count_home"
+                android:text=""
+                android:textColor="@color/red"
+                android:textStyle="bold"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                />
+        </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@+id/toolbar_rdv"
             android:layout_marginTop="10dp"
             android:id="@+id/recycle_rdv"
+
             />
 
     <TextView
@@ -39,15 +72,6 @@
         />
 
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_from_fragment_rdv"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="80dp"
-        android:src="@drawable/calendar"
-        />
+
 </RelativeLayout>
 

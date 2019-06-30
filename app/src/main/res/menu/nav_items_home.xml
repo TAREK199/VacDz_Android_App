@@ -6,7 +6,7 @@
 
     <item
         android:id="@+id/nav_home_health_espace"
-        android:icon="@drawable/ic_home_white_24dp"
+        android:icon="@drawable/ic_home_black_24dp"
         android:title="ESPACE SANTE" />
     <item
         android:id="@+id/nav_home_childrens"
@@ -15,5 +15,5 @@
     <item
         android:id="@+id/nav_home_father_profile"
         android:icon="@drawable/ic_person_black_24dp"
-        android:title="MY PROFILE" />
+        android:title="PROFILE" />
 </menu>

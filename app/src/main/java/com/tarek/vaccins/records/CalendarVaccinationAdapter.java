@@ -58,7 +58,7 @@ public class CalendarVaccinationAdapter extends RecyclerView.Adapter<CalendarVac
 
 
           if(mData.get(pos).getValue()==1){
-              holder.vaccinationstate.setImageResource(R.drawable.button_default);
+              holder.vaccinationstate.setImageResource(R.drawable.green_button);
 
           }
             holder.cardView.setOnClickListener(new View.OnClickListener() {

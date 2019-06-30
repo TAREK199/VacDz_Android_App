@@ -93,7 +93,7 @@ public class RdvActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<RdvResponse> call, Throwable t) {
-                Toast.makeText(RdvActivity.this,"problem : "+t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(RdvActivity.this,"rdv problem : "+t.getMessage(),Toast.LENGTH_LONG).show();
 
             }
         });

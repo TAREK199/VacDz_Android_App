@@ -2,25 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="65dp"
+    android:layout_marginTop="5dp"
+    android:background="@color/blue_4"
+    >
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/card_calendar_vaccination"
-        android:layout_marginTop="1dp"
         >
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:background="#F8FAFC">
+            android:layout_height="match_parent"
+            >
 
             <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:id="@+id/imgview_vaccination_state"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="30dp"
+                android:layout_marginRight="40dp"
+                android:layout_alignParentRight="true"
+
                 android:src="@drawable/button_disabled"
 
                 />
@@ -31,9 +35,9 @@
                 android:textColor="@color/blue"
                 android:id="@+id/txt_calendar_vaccination_time_name"
                 android:text="Naissance"
+                android:textStyle="bold"
                 android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="60dp"
+                android:layout_marginLeft="60dp"
                  />
 
         </RelativeLayout>

@@ -151,7 +151,7 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<RdvResponse> call, Throwable t) {
-                Toast.makeText(HomeActivity.this,"problem : "+t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(HomeActivity.this,"rdv problem home: "+t.getMessage(),Toast.LENGTH_LONG).show();
 
             }
         });
