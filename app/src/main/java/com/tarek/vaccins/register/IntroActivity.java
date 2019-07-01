@@ -67,12 +67,12 @@ public class IntroActivity extends AppCompatActivity {
         // fill list screen
 
         final List<ScreenItem> mList = new ArrayList<>();
-        mList.add(new ScreenItem("Gérer les dossiers de vacciantion de toute vos enfants en sécurité","Vaccins permet au algeriens de suivre les dossiers de vaccinations de leur enfants",R.drawable.child));
-        mList.add(new ScreenItem("Consulter vos dossiers où qie vous soyez!","Vzccins vous permettent de gérer facilemnt vos doosiers à partir de votre smarphone.",R.drawable.mobile));
-        mList.add(new ScreenItem("Receiver de rappels avant vos rendez-vous","Vaccins peut vous envoyer des avis sur votre appareil à l'approche de vos prochaines immunisations",R.drawable.calendar));
-        mList.add(new ScreenItem("Accéder aux renseignemens sur les vaccinations","Vaccins vous indique quelles immnisations sont recommandées selon le calendrier ",R.drawable.doubt));
-        mList.add(new ScreenItem("Track your family's immunization recors","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.img3));
-        mList.add(new ScreenItem("Be notified about disease outbreaks in your area","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.img3));
+        mList.add(new ScreenItem("Gérer les dossiers de vaccination de toute vos enfants en sécurité","VacDz permet au algériens de suivre les dossiers de vaccinations de leur enfants",R.drawable.childs));
+        mList.add(new ScreenItem("Consulter vos dossiers où que vous soyez!","VacDz vous permettent de gérer facilemnt vos doosiers à partir de votre appareils.",R.drawable.network));
+        mList.add(new ScreenItem("Recever des rappels avant vos rendez-vous","VacDz peut vous envoyer des avis sur votre appareil à l'approche de vos prochaines vaccinations",R.drawable.notification));
+        mList.add(new ScreenItem("Bénificier d un espace santé","VacDz vous permet de consulter des informations sur les vaccins et et les vaccinations",R.drawable.espace_sante));
+        mList.add(new ScreenItem("Confidentialité des données ","VacDz vous assure que vos données personnelles sont conservées et protégées",R.drawable.confidentiality));
+        mList.add(new ScreenItem("","Nous sommes ravie de vous aidez",R.drawable.smile));
 
         // setup viewpager
         screenPager =findViewById(R.id.screen_viewpager);

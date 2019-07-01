@@ -14,10 +14,11 @@ public class RetrofitInstance {
 
     public static Retrofit retrofit = null;
 
-    public static  String BASE_URL = "http://192.168.43.82:8000/api/";
+   // public static  String BASE_URL = "http://192.168.42.82:8000/api/";
   //    public static String BASE_URL = "http://192.168.43.82:8000/api/";
     //    public static String BASE_URL = "http://192.168.1.9:9090/pfe_bo_api/public/api/";
-    //public static String BASE_URL = "http://192.168.137.128:9090/pfe_bo_api/public/api/";
+    //
+    public static String BASE_URL = "http://192.168.1.13:9090/pfe_bo_api/public/api/";
 
 
     private static Gson gson = new GsonBuilder()
