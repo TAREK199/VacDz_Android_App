@@ -21,7 +21,7 @@
     <Button
         android:id="@+id/btn_next"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="16dp"
@@ -29,6 +29,7 @@
         android:drawableRight="@drawable/ic_arrow_forward_black"
         android:drawableTint="@color/gradient_start_color"
         android:text="Suivant"
+        android:textSize="13dp"
         android:textColor="@color/gradient_start_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

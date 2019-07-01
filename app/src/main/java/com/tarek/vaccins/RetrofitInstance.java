@@ -25,7 +25,6 @@ public class RetrofitInstance {
             .setLenient()
             .create();
 
-
     public static FatherService fatherInstance() {
 
         if (retrofit == null) {

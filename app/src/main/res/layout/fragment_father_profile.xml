@@ -104,8 +104,8 @@
                     android:layout_marginLeft="30dp"
                     >
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="39dp"
+                    android:layout_height="39dp"
                     android:background="@drawable/ic_location"
                     android:layout_centerInParent="true"
                     />
