@@ -61,7 +61,6 @@
         android:id="@+id/linear_setting_account"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
-        android:background="@color/blue_3"
         >
 
         <LinearLayout
@@ -132,7 +131,6 @@
         android:layout_marginTop="3dp"
         android:id="@+id/linear_language_account"
         android:orientation="horizontal"
-        android:background="@color/blue_3"
         >
 
         <LinearLayout
@@ -203,7 +201,6 @@
         android:id="@+id/linear_bug_account"
         android:layout_marginTop="3dp"
         android:orientation="horizontal"
-        android:background="@color/blue_3"
         >
 
         <LinearLayout
@@ -274,7 +271,6 @@ Faites-le-nous savoir !"
         android:id="@+id/linear_logout"
         android:layout_marginTop="3dp"
         android:orientation="horizontal"
-        android:background="@color/blue_3"
         >
 
         <LinearLayout
