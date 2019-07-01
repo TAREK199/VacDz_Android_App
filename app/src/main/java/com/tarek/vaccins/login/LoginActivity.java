@@ -83,8 +83,9 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.txt_forget_password).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,TestNotification.class));
-                finish();return;
+            //    startActivity(new Intent(LoginActivity.this,TestNotification.class));
+                Toast.makeText(LoginActivity.this,"Soon",Toast.LENGTH_LONG).show();
+          //      finish();return;
 
             }
         });

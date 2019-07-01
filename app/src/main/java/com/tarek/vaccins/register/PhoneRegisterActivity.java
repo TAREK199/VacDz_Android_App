@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,6 +44,7 @@ public class PhoneRegisterActivity extends AppCompatActivity {
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks verificationCallbacks ;
     private PhoneAuthProvider.ForceResendingToken resendToken ;
     private FirebaseAuth fbAuth ;
+    private LinearLayout linearCode ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +54,12 @@ public class PhoneRegisterActivity extends AppCompatActivity {
         mPhoneNumber = findViewById(R.id.phoneNumber);
 
 
+
         code = findViewById(R.id.code);
         sendCode = findViewById(R.id.sendCode);
         resendCode = findViewById(R.id.resendCode);
         verifyCode = findViewById(R.id.verifyCode);
+        linearCode = findViewById(R.id.linear_enter_code_phone_activity);
 
 
         resendCode.setEnabled(false);
@@ -69,16 +73,19 @@ public class PhoneRegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                /*
-         //       if (TextUtils.isEmpty(mPhoneNumber.getText())){
-                    if (mPhoneNumber.getText().toString().equals("")){
+/*
+                if (TextUtils.isEmpty(mPhoneNumber.getText())){
+              //      if (mPhoneNumber.getText().toString().equals("")){
+              //  if(mPhoneNumber.){
                         Toast.makeText(PhoneRegisterActivity.this,"pleasse enter phone number",Toast.LENGTH_LONG).show();
                 }else {
                         Toast.makeText(PhoneRegisterActivity.this,"sahit",Toast.LENGTH_LONG).show();
                 }
-*/
 
+*/
                 sendCode(view);
+                linearCode.setVisibility(View.VISIBLE);
+
             }
         });
         verifyCode.setOnClickListener(new View.OnClickListener() {
@@ -159,7 +166,6 @@ public class PhoneRegisterActivity extends AppCompatActivity {
 
                     String phNumber = mPhoneNumber.getText().toString();
 
-                    Toast.makeText(PhoneRegisterActivity.this,"ph number is " +phNumber,Toast.LENGTH_LONG).show();
 
                     Intent intent = new Intent(PhoneRegisterActivity.this,RegisterActivity.class);
                     intent.putExtra("phone_number",phNumber);

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">VacDz</string>
     <string name="se_conencter">Se Connecter</string>
-    <string name="msg_connection"> Veuillez saisir votre wilaya courriel et votre mot de passe</string>
+    <string name="msg_connection"> Veuillez saisir votre email et votre mot de passe</string>
     <string name="email">EMAIL</string>
     <string name="password">MOT DE PASSE</string>
     <string name="confirm_password">Confirmer mot de passe</string>

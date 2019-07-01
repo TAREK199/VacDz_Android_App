@@ -14,7 +14,7 @@ public class RetrofitInstance {
 
     public static Retrofit retrofit = null;
 
-   // public static  String BASE_URL = "http://192.168.42.82:8000/api/";
+  //  public static  String BASE_URL = "http://192.168.191.7:8000/api/";
   //    public static String BASE_URL = "http://192.168.43.82:8000/api/";
     //    public static String BASE_URL = "http://192.168.1.9:9090/pfe_bo_api/public/api/";
     //

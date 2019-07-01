@@ -50,8 +50,11 @@ public class RegisterActivity extends AppCompatActivity  {
         Bundle bundle = getIntent().getExtras();
 
      //   if (phNumber!=null) {
+        if (phNumber!=null) {
             phNumber = bundle.getString("phone_number");
-            Toast.makeText(RegisterActivity.this,"pjNumber "+phNumber,Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(RegisterActivity.this, "", Toast.LENGTH_LONG).show();
+        }
   //      }else {
     //        Toast.makeText(RegisterActivity.this,"Number aw vide ya rajel "+phNumber,Toast.LENGTH_LONG).show();
 

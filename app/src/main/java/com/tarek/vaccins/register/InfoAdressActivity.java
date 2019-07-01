@@ -1,6 +1,10 @@
 package com.tarek.vaccins.register;
 
+import android.content.Context;
 import android.content.Intent;
+import android.icu.text.IDNA;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -18,7 +22,6 @@ import com.tarek.vaccins.SharedPrefManager;
 import com.tarek.vaccins.home.HomeActivity;
 import com.tarek.vaccins.model.Father;
 import com.tarek.vaccins.model.Wilaya;
-import com.tarek.vaccins.response.CommuneResponse;
 import com.tarek.vaccins.response.FatherResponse;
 import com.tarek.vaccins.response.WilayaResponse;
 import com.tarek.vaccins.service.FatherService;
@@ -39,11 +42,10 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
 
 
     private static final String[] identityType = {"Carte nationale"};
-    private static final String[] wilaya = {"setif", "alger","constantine"};
-    private static final String[] commune = {"eulma", "djemila","ain arnat","ain abbassa"};
+    boolean connected = false;
 
     private EditText identityNumber;
-     String firsrName,lastName,phoneNumber, email, password,identityTypeChar,identityNumberChar,wilayaChar,communeChar;
+     String firstName,lastName,phoneNumber, email, password,identityTypeChar,identityNumberChar,wilayaChar,communeChar;
 
 
     @Override
@@ -52,10 +54,24 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
         setContentView(R.layout.activity_info_adress);
 
         identityNumber = findViewById(R.id.edt_identity_number);
-
         spinnerIdentityType = findViewById(R.id.spinner_identity_type);
-
         recyclerViewWilaya = findViewById(R.id.recycle_wilaya_register) ;
+
+
+        Intent intent = getIntent();
+        firstName = intent.getStringExtra("firstName");
+        lastName = intent.getStringExtra("lastName");
+        phoneNumber= intent.getStringExtra("phoneNumber");
+        email = intent.getStringExtra("email");
+        password = intent.getStringExtra("password");
+
+
+      boolean check =  checkConnection();
+
+      if (!check){
+          Toast.makeText(InfoAdressActivity.this,"no connection",Toast.LENGTH_LONG).show();
+
+      }
 
         sharedPrefManager = new SharedPrefManager(InfoAdressActivity.this);
 
@@ -69,7 +85,15 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
         findViewById(R.id.img_from_details_register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(InfoAdressActivity.this,RegisterActivity.class));
+
+        /*        Intent myIntent = new Intent(InfoAdressActivity.this, RegisterActivity.class);
+                myIntent.putExtra("firstName", firstName);
+                myIntent.putExtra("lastName", lastName);
+                myIntent.putExtra("phoneNumber", phNumber);
+                myIntent.putExtra("email", emailChar);
+                myIntent.putExtra("password", passwordChar);
+                startActivity(myIntent);*/
+        startActivity(new Intent(InfoAdressActivity.this,RegisterActivity.class));
             }
         });
 
@@ -108,11 +132,13 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
     public void fatherRegister(){
 
         Intent intent = getIntent();
-           firsrName = intent.getStringExtra("firstName");
-           lastName = intent.getStringExtra("lastName");
-           phoneNumber= intent.getStringExtra("phoneNumber");
-           email = intent.getStringExtra("email");
-           password = intent.getStringExtra("password");
+        firstName = intent.getStringExtra("firstName");
+        lastName = intent.getStringExtra("lastName");
+        phoneNumber= intent.getStringExtra("phoneNumber");
+        email = intent.getStringExtra("email");
+        password = intent.getStringExtra("password");
+
+
 
            if (validate()) {
 
@@ -123,10 +149,10 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
 
                Toast.makeText(InfoAdressActivity.this,email,Toast.LENGTH_LONG).show();
                Toast.makeText(InfoAdressActivity.this,password,Toast.LENGTH_LONG).show();
-               Toast.makeText(InfoAdressActivity.this,firsrName,Toast.LENGTH_LONG).show();
+               Toast.makeText(InfoAdressActivity.this, firstName,Toast.LENGTH_LONG).show();
                Toast.makeText(InfoAdressActivity.this,lastName,Toast.LENGTH_LONG).show();
                Toast.makeText(InfoAdressActivity.this,phoneNumber,Toast.LENGTH_LONG).show();
-               fatherService.register(new Father("1", email, password, firsrName, lastName, phoneNumber , "setif", "setif", in)).enqueue(new Callback<FatherResponse>() {
+               fatherService.register(new Father("1", email, password, firstName, lastName, phoneNumber , "setif", "setif", in)).enqueue(new Callback<FatherResponse>() {
 
                    @Override
                    public void onResponse(Call<FatherResponse> call, Response<FatherResponse> response) {
@@ -189,7 +215,7 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
             @Override
             public void onFailure(Call<WilayaResponse> call, Throwable t) {
 
-                Toast.makeText(InfoAdressActivity.this,"problem "+t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(InfoAdressActivity.this,"no connection ",Toast.LENGTH_LONG).show();
 
             }
         });
@@ -209,5 +235,27 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
         }
 
         return value;
+    }
+
+
+    public boolean checkConnection(){
+/*
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            //we are connected to a network
+            connected = true;
+            Toast.makeText(InfoAdressActivity.this,"keyna",Toast.LENGTH_LONG).show();
+        }
+        else
+            connected = false;
+        Toast.makeText(InfoAdressActivity.this,"mknch",Toast.LENGTH_LONG).show();
+*/
+
+            ConnectivityManager connectivityManager
+                    = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+
     }
 }
