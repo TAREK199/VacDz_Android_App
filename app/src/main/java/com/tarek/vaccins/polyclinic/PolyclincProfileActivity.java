@@ -19,12 +19,11 @@ import android.widget.Toast;
 import com.tarek.vaccins.R;
 import com.tarek.vaccins.RetrofitInstance;
 import com.tarek.vaccins.SharedPrefManager;
-import com.tarek.vaccins.home.HomeActivity;
 import com.tarek.vaccins.home.RdvActivity;
-import com.tarek.vaccins.model.Plan;
 import com.tarek.vaccins.model.Programme;
 import com.tarek.vaccins.model.Rdv;
 import com.tarek.vaccins.response.PolyclinicResponse;
+import com.tarek.vaccins.response.ProgrammeResponse;
 import com.tarek.vaccins.response.RdvAddResponse;
 import com.tarek.vaccins.service.FatherService;
 import com.tarek.vaccins.service.PolyclinicService;
@@ -39,17 +38,17 @@ import retrofit2.Response;
 
 public class PolyclincProfileActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView ;
-    private List<Plan> programmes ;
-    private Button prendrRdv , confirmeRdv ;
-    private String date ;
-    private TextView polyName,polyAdress,polyTel ;
+    private RecyclerView recyclerView;
+   // private List<Plan> plans;
+    private List<Programme> programmes ;
+    private Button prendrRdv, confirmeRdv;
+    private String date;
+    private TextView polyName, polyAdress, polyTel;
     private static final String TAG = "datepicker";
-    private DatePickerDialog.OnDateSetListener mDateSetListener ;
-    SharedPrefManager sharedPrefManager ;
-    private int polyId ;
-    private  String token ;
-
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+    SharedPrefManager sharedPrefManager;
+    private int polyId;
+    private String token;
 
 
     @Override
@@ -65,18 +64,19 @@ public class PolyclincProfileActivity extends AppCompatActivity {
 
         sharedPrefManager = new SharedPrefManager(PolyclincProfileActivity.this);
         token = sharedPrefManager.getToken();
-        Intent intent = getIntent() ;
-        polyId = intent.getIntExtra("poly_id",0);
+        Intent intent = getIntent();
+        polyId = intent.getIntExtra("poly_id", 0);
 
         findViewById(R.id.img_arrow_from_profile_poly).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PolyclincProfileActivity.this,PolyclinicActivity.class));
+                startActivity(new Intent(PolyclincProfileActivity.this, PolyclinicActivity.class));
             }
         });
 
-        viewData();
+   //     viewData();
         getInfo();
+        getProgramme();
 
         prendrRdv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +90,7 @@ public class PolyclincProfileActivity extends AppCompatActivity {
                         PolyclincProfileActivity.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         mDateSetListener,
-                        year,month,day);
+                        year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
@@ -101,9 +101,10 @@ public class PolyclincProfileActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-               // Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
+                // Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
 
-                date = year + "-" +"0"+month+"-" +day;//+"T13:34:00.000";
+                date = year + "-" + month + "-" + "0" + day;//+"T13:34:00.000";
+
                 prendrRdv.setVisibility(View.GONE);
                 confirmeRdv.setVisibility(View.VISIBLE);
             }
@@ -131,7 +132,7 @@ public class PolyclincProfileActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // Write your code here to execute after dialog
-                               takeAppoinment();
+                                takeAppoinment();
                             }
                         });
 
@@ -153,36 +154,32 @@ public class PolyclincProfileActivity extends AppCompatActivity {
         });
     }
 
-   public void viewData(){
+    public void viewData() {
 
         recyclerView = findViewById(R.id.recycle_profile_poly);
-
-   //     programmes = new ArrayList<>();
-      /*  programmes.add(new Programme("Dimanche","2Mois + 4Mois"));
-        programmes.add(new Programme("Lundi","1Mois + 3mois"));
-        programmes.add(new Programme("Mardi","2Mois"));
-        programmes.add(new Programme("Mercredi","2Mois"));
-        programmes.add(new Programme("jeudi","2Mois"));*/
-
-       programmes.add(new Plan(1,"BCG"));
-       programmes.add(new Plan(1,"BCG"));
-       programmes.add(new Plan(1,"BCG"));
-       programmes.add(new Plan(1,"BCG"));
-       programmes.add(new Plan(1,"BCG"));
+/*
+        programmes = new ArrayList<>();
+        programmes.add(new Programme(1,"2Mois + 4Mois"));
+        programmes.add(new Programme(2,"1Mois + 3mois"));
+        programmes.add(new Programme(3,"2Mois"));
+        programmes.add(new Programme(4,"2Mois"));
+        programmes.add(new Programme(5,"2Mois"));
+*/
 
 
-       ProgrammPolyHorizontalAdapter programmPolyHorizontalAdapter = new ProgrammPolyHorizontalAdapter(PolyclincProfileActivity.this,programmes);
+
+        ProgrammPolyHorizontalAdapter programmPolyHorizontalAdapter = new ProgrammPolyHorizontalAdapter(PolyclincProfileActivity.this, programmes);
         LinearLayoutManager horizontalLayoutManager
                 = new LinearLayoutManager(PolyclincProfileActivity.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(horizontalLayoutManager);
         recyclerView.setAdapter(programmPolyHorizontalAdapter);
     }
 
-   public void getInfo() {
+    public void getInfo() {
 
         PolyclinicService polyclinicService = RetrofitInstance.polyclinicInstance();
 
-        polyclinicService.getPolycliniqueInfo("Bearer "+token,polyId).enqueue(new Callback<PolyclinicResponse>() {
+        polyclinicService.getPolycliniqueInfo("Bearer " + token, polyId).enqueue(new Callback<PolyclinicResponse>() {
             @Override
             public void onResponse(Call<PolyclinicResponse> call, Response<PolyclinicResponse> response) {
 
@@ -192,64 +189,123 @@ public class PolyclincProfileActivity extends AppCompatActivity {
                     polyName.setText(response.body().getData().getPolyclinique().getPolyName());
                     polyAdress.setText(response.body().getData().getPolyclinique().getPolyAdress());
                     polyTel.setText(response.body().getData().getPolyclinique().getTel());
-
-/*
-                    programmes = new ArrayList<>();
-                    for (int i=0 ;i<response.body().getData().getPlan().size();i++){
-
-                        programmes.add(new Plan(response.body().getData().getPlan().get(i).getJour(),
-                                                     response.body().getData().getPlan().get(i).getVaccin()));
-                    }
-                }
-                else {
-                    Toast.makeText(PolyclincProfileActivity.this,"no data to display",Toast.LENGTH_LONG).show();
-                }
-
-            }*/
-
                 }
 
             }
 
             @Override
             public void onFailure(Call<PolyclinicResponse> call, Throwable t) {
-                Toast.makeText(PolyclincProfileActivity.this,"problem "+t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(PolyclincProfileActivity.this, "problem " + t.getMessage(), Toast.LENGTH_LONG).show();
 
             }
         });
     }
-   public void takeAppoinment() {
 
-            int childId = sharedPrefManager.getIdChild();
+    public void takeAppoinment() {
 
-            FatherService fatherService = RetrofitInstance.fatherInstance();
+        int childId = sharedPrefManager.getIdChild();
 
-       fatherService.prenRdv("Bearer " +token, new Rdv(childId, polyId, date+"T08:00:00.000\n")).enqueue(new Callback<RdvAddResponse>() {
-                @Override
-                public void onResponse(Call<RdvAddResponse> call, Response<RdvAddResponse> response) {
+        FatherService fatherService = RetrofitInstance.fatherInstance();
 
-                    Boolean success = response.body().getSuccess();
+        fatherService.prenRdv("Bearer " + token, new Rdv(childId, polyId, "2019-07-03" + "T08:00:00.000\n")).enqueue(new Callback<RdvAddResponse>() {
+            @Override
+            public void onResponse(Call<RdvAddResponse> call, Response<RdvAddResponse> response) {
 
-                    if (success) {
-                        Toast.makeText(PolyclincProfileActivity.this, "votre RDV est pris en charge : " + success, Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(PolyclincProfileActivity.this, RdvActivity.class));
+                Boolean success = response.body().getSuccess();
+                //             Toast.makeText(PolyclincProfileActivity.this, "success : " + response.message().toString(), Toast.LENGTH_LONG).show();
 
-                    }else {
-                        Toast.makeText(PolyclincProfileActivity.this, "votre RDV n'est pris en charge : " + success, Toast.LENGTH_LONG).show();
+                if (success) {
+                    Toast.makeText(PolyclincProfileActivity.this, "votre RDV est pris en charge ", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(PolyclincProfileActivity.this, RdvActivity.class));
+
+                } else {
+                    Toast.makeText(PolyclincProfileActivity.this, "votre RDV n'est pris en charge  ", Toast.LENGTH_LONG).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RdvAddResponse> call, Throwable t) {
+                Toast.makeText(PolyclincProfileActivity.this, "problem " + t.getMessage(), Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
+
+
+    public void getProgramme(){
+
+        PolyclinicService polyclinicService = RetrofitInstance.polyclinicInstance() ;
+
+        polyclinicService.getProgrammes("Bearer "+token,polyId).enqueue(new Callback<ProgrammeResponse>() {
+            @Override
+            public void onResponse(Call<ProgrammeResponse> call, Response<ProgrammeResponse> response) {
+
+                Boolean success = response.body().getSuccess();
+
+               Toast.makeText(PolyclincProfileActivity.this,"prgem value   " +response.body().getData().getPlan().get(0).getValue() ,Toast.LENGTH_LONG).show();
+
+                programmes= new ArrayList<>();
+
+                programmes = response.body().getData().getPlan();
+
+                viewData();
+
+
+/*
+                String jour = "";
+
+                List<String> actes = new ArrayList<>();
+                int j ;
+//
+                if (success){
+
+
+                    for (int i =0;i<response.body().getData().getPlan().size();i++){
+
+                      j = response.body().getData().getPlan().get(i).getJour() ;
+
+                      if(j==1){
+                          jour = "Dimanche" ;
+                      }else if(j==2) {
+                          jour="Lundi";
+                      }else if(j==3){
+                          jour = "Mardi";
+                      }else if(j==4){
+                          jour = "Mercredi";
+                      }else {
+                          jour="Jeudi";
+                      }
+
+                   //   Toast.makeText(PolyclincProfileActivity.this,"value 5 size is  " +response.body().getData().getPlan().get(4).getValue().size() ,Toast.LENGTH_LONG).show();
+
+
+                        for (int co=0 ; co <= response.body().getData().getPlan().get(i).getValue().size()+1;co++){
+
+            Toast.makeText(PolyclincProfileActivity.this,"le jour "+i+"vaccins size "
+                                     +response.body().getData().getPlan().get(co).getValue().size(),Toast.LENGTH_LONG).show();
+
+
+                        }
+         //     programmes.add(new Programme(j,actes));
 
                     }
-                }
 
-                @Override
-                public void onFailure(Call<RdvAddResponse> call, Throwable t) {
-                    Toast.makeText(PolyclincProfileActivity.this, "problem : " + t.getMessage(), Toast.LENGTH_LONG).show();
+                //    viewData();
+
 
                 }
-            });
+            }
+*/
+            }
+            @Override
+            public void onFailure(Call<ProgrammeResponse> call, Throwable t) {
+                Toast.makeText(PolyclincProfileActivity.this,"no connection",Toast.LENGTH_LONG).show();
 
-
-        }
-
-
-
+            }
+        });
+    }
 }
+
+
+

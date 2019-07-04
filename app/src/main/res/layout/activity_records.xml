@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/frame_childrens_main_nav"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="0dp"
      android:layout_below="@+id/toolbar_record"
         android:layout_above="@+id/bottomnav_childrens_main_nav"
 

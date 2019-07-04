@@ -47,18 +47,15 @@ public class RegisterActivity extends AppCompatActivity  {
         });
 
 
-        Bundle bundle = getIntent().getExtras();
-
-     //   if (phNumber!=null) {
-        if (phNumber!=null) {
-            phNumber = bundle.getString("phone_number");
+      //  Bundle bundle = getIntent().getExtras();
+        Intent intent = getIntent();
+        phNumber = intent.getExtras().getString("phone");
+        if (phNumber==null) {
+            Toast.makeText(RegisterActivity.this, "my phone in register  : "+phNumber, Toast.LENGTH_LONG).show();
         }else {
-            Toast.makeText(RegisterActivity.this, "", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterActivity.this, "my phone in register is null  ", Toast.LENGTH_LONG).show();
         }
-  //      }else {
-    //        Toast.makeText(RegisterActivity.this,"Number aw vide ya rajel "+phNumber,Toast.LENGTH_LONG).show();
 
-      //  }
 
     }
 

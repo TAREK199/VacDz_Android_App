@@ -147,12 +147,12 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
 
                FatherService fatherService = RetrofitInstance.fatherInstance();
 
-               Toast.makeText(InfoAdressActivity.this,email,Toast.LENGTH_LONG).show();
+         /*      Toast.makeText(InfoAdressActivity.this,email,Toast.LENGTH_LONG).show();
                Toast.makeText(InfoAdressActivity.this,password,Toast.LENGTH_LONG).show();
                Toast.makeText(InfoAdressActivity.this, firstName,Toast.LENGTH_LONG).show();
                Toast.makeText(InfoAdressActivity.this,lastName,Toast.LENGTH_LONG).show();
-               Toast.makeText(InfoAdressActivity.this,phoneNumber,Toast.LENGTH_LONG).show();
-               fatherService.register(new Father("1", email, password, firstName, lastName, phoneNumber , "setif", "setif", in)).enqueue(new Callback<FatherResponse>() {
+               Toast.makeText(InfoAdressActivity.this,phoneNumber,Toast.LENGTH_LONG).show();*/
+               fatherService.register(new Father("1", email, password, firstName, lastName, "0699289437" , "setif", "setif", in)).enqueue(new Callback<FatherResponse>() {
 
                    @Override
                    public void onResponse(Call<FatherResponse> call, Response<FatherResponse> response) {
@@ -175,7 +175,7 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
                            startActivity(new Intent(InfoAdressActivity.this, HomeActivity.class));
 
                        } else {
-                           Toast.makeText(InfoAdressActivity.this, "error", Toast.LENGTH_SHORT).show();
+                           Toast.makeText(InfoAdressActivity.this, "compte existe déja", Toast.LENGTH_SHORT).show();
 
                        }
                    }

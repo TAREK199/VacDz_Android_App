@@ -1,5 +1,7 @@
 package com.tarek.vaccins.polyclinic;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
@@ -35,8 +38,8 @@ public class PolyclinicActivity extends AppCompatActivity {
     PolyclinicAdapater polyclinicAdapater ;
     private Toolbar toolbar ;
     private MaterialSearchView searchView ;
+    private SearchView search ;
     SharedPrefManager sharedPrefManager ;
-    String communeName ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,7 @@ public class PolyclinicActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar_poly_search);
         searchView =  findViewById(R.id.searchview_poly);
 
-
+       //    search = findViewById(R.id.searchview_poly_new);
 
         setSupportActionBar(toolbar);
         //getSupportActionBar().setTitle("Trouver votre polyclinique");
@@ -85,13 +88,23 @@ public class PolyclinicActivity extends AppCompatActivity {
             }
         });
 
-
-        findViewById(R.id.btn_from_polyclinics).setOnClickListener(new View.OnClickListener() {
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(PolyclinicActivity.this,PolyclinicMapActivity.class));
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+
+                polyclinicAdapater.getFilter().filter(query);
+
+                Toast.makeText(PolyclinicActivity.this,"eeh text change " +query,Toast.LENGTH_LONG).show();
+
+                return false;
             }
         });
+
     }
 
     @Override
@@ -103,6 +116,8 @@ public class PolyclinicActivity extends AppCompatActivity {
 
         return true;
     }
+
+
 
     public void viewData(){
 

@@ -45,6 +45,7 @@ public class PhoneRegisterActivity extends AppCompatActivity {
     private PhoneAuthProvider.ForceResendingToken resendToken ;
     private FirebaseAuth fbAuth ;
     private LinearLayout linearCode ;
+    String phoneNumber ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,13 +119,7 @@ public class PhoneRegisterActivity extends AppCompatActivity {
 
 
         String phNumber = mPhoneNumber.getText().toString();
-/*
-        if (mPhoneNumber.getText().toString().trim().length()==0){
-            Toast.makeText(PhoneRegisterActivity.this,"pleasse enter phone number",Toast.LENGTH_LONG).show();
-        }else {
-            Toast.makeText(PhoneRegisterActivity.this,"sahit",Toast.LENGTH_LONG).show();
-        }
-*/
+
         setUpVerificationCallbacks();
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
@@ -134,7 +129,7 @@ public class PhoneRegisterActivity extends AppCompatActivity {
                 this,
                 verificationCallbacks);
         resendCode.setVisibility(View.VISIBLE);
-        Toast.makeText(PhoneRegisterActivity.this,"message send",Toast.LENGTH_LONG).show();
+     //   Toast.makeText(PhoneRegisterActivity.this,"message send",Toast.LENGTH_LONG).show();
 
     }
 
@@ -164,11 +159,10 @@ public class PhoneRegisterActivity extends AppCompatActivity {
 
                 if(task.isSuccessful()) {
 
-                    String phNumber = mPhoneNumber.getText().toString();
-
-
+                    phoneNumber = mPhoneNumber.getText().toString();
+                    Toast.makeText(PhoneRegisterActivity.this,"my phone number is "+phoneNumber,Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(PhoneRegisterActivity.this,RegisterActivity.class);
-                    intent.putExtra("phone_number",phNumber);
+                    intent.putExtra("phone", phoneNumber);
                     startActivity(intent);
 
                     finish();

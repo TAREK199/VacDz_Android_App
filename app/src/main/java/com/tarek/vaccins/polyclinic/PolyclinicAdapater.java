@@ -24,7 +24,8 @@ public class PolyclinicAdapater extends RecyclerView.Adapter<PolyclinicAdapater.
 
 
     private Context context ;
-    private List<Polyclinic>  mData ,filterPoly;
+    private List<Polyclinic>  mData ,filterPoly,polyListFiltered;
+
     CustomFilter filter ;
 
 
@@ -33,11 +34,7 @@ public class PolyclinicAdapater extends RecyclerView.Adapter<PolyclinicAdapater.
     public PolyclinicAdapater(Context context, List<Polyclinic> mData) {
         this.context = context;
         this.mData = mData;
-        this.filterPoly = mData;
-    }
-
-    public PolyclinicAdapater(Context context) {
-        this.context = context;
+    //    this.filterPoly = mData;
     }
 
     @NonNull
@@ -83,6 +80,9 @@ public class PolyclinicAdapater extends RecyclerView.Adapter<PolyclinicAdapater.
         return filter;
     }
 
+
+
+
     public static class MyViewHolderPoly extends RecyclerView.ViewHolder{
 
 
@@ -118,7 +118,7 @@ public class PolyclinicAdapater extends RecyclerView.Adapter<PolyclinicAdapater.
                 // get the result
                 for (int i = 0; i< filters.size(); i++)
                 {
-                    if (filters.get(i).getPolyName().toUpperCase().contains(constraint)){
+                    if (filters.get(i).getPolyAdress().toUpperCase().contains(constraint)){
 
                         Polyclinic polyclinic = new Polyclinic(filterPoly.get(i).getPolyName());
 
@@ -141,6 +141,8 @@ public class PolyclinicAdapater extends RecyclerView.Adapter<PolyclinicAdapater.
             mData = (ArrayList<Polyclinic>) results.values;
             notifyDataSetChanged(); ; // refrech our grid view
         }
+
+
     }
 
 }

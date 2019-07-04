@@ -20,6 +20,7 @@ import com.tarek.vaccins.response.DeviceTokenResponse;
 import com.tarek.vaccins.response.RdvResponse;
 import com.tarek.vaccins.service.FatherService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -151,8 +152,14 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<RdvResponse> call, Throwable t) {
-                Toast.makeText(HomeActivity.this,"rdv problem home: "+t.getMessage(),Toast.LENGTH_LONG).show();
-
+                if (t instanceof IOException) {
+                    Toast.makeText(HomeActivity.this, "this is an actual network failure ", Toast.LENGTH_SHORT).show();
+                    // logging probably not necessary
+                }
+                else {
+                    Toast.makeText(HomeActivity.this, "conversion issue! big problems :(", Toast.LENGTH_SHORT).show();
+                    // todo log to some central bug tracking service
+                }
             }
         });
     }

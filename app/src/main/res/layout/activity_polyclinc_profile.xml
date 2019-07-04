@@ -36,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="POLYCLINIQUE"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:layout_gravity="center"
             android:textSize="30dp"
@@ -46,7 +47,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="300dp"
-        android:layout_height="277dp"
+        android:layout_height="220dp"
         android:id="@+id/card_profile_poly"
         android:background="@color/blue"
         android:layout_below="@id/toolbar_profile_poly"
@@ -80,10 +81,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/txt_poly_name_profile"
-                    android:textSize="22dp"
+                    android:textSize="20dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="6dp"
-                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:text="Annad Ahmed" />
 
@@ -107,11 +107,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/txt_poly_adr_profile"
-
-                    android:textSize="22dp"
+                    android:textSize="20dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="6dp"
-                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:text="Setif" />
 
@@ -136,11 +134,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/txt_poly_tel_profile"
-
-                    android:textSize="22dp"
+                    android:textSize="20dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="6dp"
-                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:text="036213625" />
 

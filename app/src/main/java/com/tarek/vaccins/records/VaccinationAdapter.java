@@ -3,6 +3,7 @@ package com.tarek.vaccins.records;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.tarek.vaccins.R;
 import com.tarek.vaccins.model.Vaccin;
 import com.tarek.vaccins.model.Vaccination;
+import com.tarek.vaccins.register.InfoAdressActivity;
 
 import java.util.List;
 
@@ -53,29 +55,12 @@ public class VaccinationAdapter extends RecyclerView.Adapter<VaccinationAdapter.
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                     Toast.makeText(context,"poly "+vaccinationsList.get(pos).getPolycliniqueId()  +
-                             "vaccin "+vaccinationsList.get(pos).getVaccin(),Toast.LENGTH_SHORT).show();
 
-                //before inflating the custom alert dialog layout, we will get the current activity viewgroup
+                Intent myIntent = new Intent(context, VaccinInfoActivity.class);
+                myIntent.putExtra("poly_vac", vaccinationsList.get(pos).getPolycliniqueId());
+                myIntent.putExtra("date_vac", vaccinationsList.get(pos).getDateVaccination());
 
-                //then we will inflate the custom alert dialog xml that we created
-                View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_vaccination,holder.viewGroup ,false);
-
-
-        //        holder.polyclincName.setText(vaccinationsList.get(pos).getPolycliniqueId());
-           //     holder.date.setText(vaccinationsList.get(pos).getVaccin());
-
-                    //              Toast.makeText(context,"succcesssssss",Toast.LENGTH_LONG).show();
-                //Now we need an AlertDialog.Builder object
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-                //setting the view of the builder to our custom view that we already inflated
-                builder.setView(dialogView);
-
-                //finally creating the alert dialog and displaying it
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-
+                context.startActivity(myIntent);
 
             }
         });

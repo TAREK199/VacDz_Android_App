@@ -1,6 +1,7 @@
 package com.tarek.vaccins.home;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,7 +30,6 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
         sharedPrefManager = new SharedPrefManager(SettingActivity.this);
 
-
         email = findViewById(R.id.txt_email_settings);
 /*
         finish();
@@ -49,8 +49,24 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                sharedPrefManager.logOut();
-                startActivity(new Intent(SettingActivity.this, LoginActivity.class));
+                new AlertDialog.Builder(SettingActivity.this)
+                        .setTitle("Confirm Order")
+                        .setMessage("Are you sure?")
+                        .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // continue with delete
+                        sharedPrefManager.logOut();
+                        startActivity(new Intent(SettingActivity.this, LoginActivity.class));
+                    }
+                })
+    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+    .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+
             }
         });
 

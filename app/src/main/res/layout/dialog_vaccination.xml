@@ -6,7 +6,7 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="350dp"
-        android:layout_height="250dp"
+        android:layout_height="145dp"
         android:layout_centerHorizontal="true"
         >
 
@@ -22,7 +22,7 @@
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:id="@+id/linear_poly_dialog_vaccination"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="14dp"
 
                 >
 
@@ -30,7 +30,8 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_polyclinic_24dp"
+                    android:background="@drawable/polyc"
+                    android:layout_marginLeft="19dp"
                     />
 
                 <TextView
@@ -49,7 +50,7 @@
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:layout_below="@+id/linear_poly_dialog_vaccination"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="15dp"
                 >
 
                 <ImageView
@@ -57,6 +58,7 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:background="@drawable/calendar"
+                    android:layout_marginLeft="19dp"
                     />
 
                 <TextView
@@ -70,20 +72,6 @@
                     />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/buttonSubmit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="18dp"
-                android:text="Confirmer"
-                android:background="@drawable/ic_edittextstyle"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edt_comment" />
 
 
         </RelativeLayout>

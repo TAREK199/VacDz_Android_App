@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="60dp"
-            android:text="REBAI TAREK"
+            android:text=" "
             android:textColor="@color/white"
             android:textSize="35dp"
             android:textStyle="bold" />
@@ -38,7 +38,7 @@
         android:layout_width="280dp"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="320dp"
+        android:layout_marginTop="300dp"
         app:cardMaxElevation="30dp"
         app:cardCornerRadius="10dp"
         >
@@ -47,7 +47,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -67,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:id="@+id/txt_birth_place_children_profile"
-                    android:text="Sétif"
+                    android:text=""
                     android:textSize="20dp"
                     android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
@@ -93,7 +92,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:id="@+id/txt_birth_date_children_profile"
-                    android:text="10/07/2018"
+                    android:text=""
                     android:textSize="20dp"
                     android:layout_marginLeft="10dp"
                     android:layout_gravity="center"
@@ -120,7 +119,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:id="@+id/txt_sexe_children_profile"
-                    android:text="Masculin"
+                    android:text=""
                     android:textSize="20dp"
                     android:layout_marginLeft="10dp"
                     />

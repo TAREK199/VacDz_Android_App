@@ -22,6 +22,7 @@
          />
  </android.support.v7.widget.Toolbar>
 
+
     <com.miguelcatalan.materialsearchview.MaterialSearchView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,24 +30,24 @@
         android:hint="rechercher"
         />
 
+<!--
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchview_poly_new"
+        android:hint="rechercher"
+        />
+        -->
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recycle_poly"
         android:layout_below="@+id/toolbar_poly_search"
+        android:layout_marginTop="2dp"
         />
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_from_polyclinics"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="40dp"
-        android:src="@drawable/map_route"
-        />
+
 
 
 

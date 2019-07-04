@@ -1,32 +1,34 @@
 package com.tarek.vaccins.model;
 
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class Programme {
 
 
-    private String jour ,acte;
+    @SerializedName("jour")
+    @Expose
+    private Integer jour;
+    @SerializedName("value")
+    @Expose
+    private List<String> value = null;
 
-    public Programme(String jour, String acte) {
-        this.jour = jour;
-        this.acte = acte;
-    }
-
-    public String getJour() {
+    public Integer getJour() {
         return jour;
     }
 
-    public void setJour(String jour) {
+    public void setJour(Integer jour) {
         this.jour = jour;
     }
 
-    public String getActe() {
-        return acte;
+    public List<String> getValue() {
+        return value;
     }
 
-    public void setActe(String acte) {
-        this.acte = acte;
+    public void setValue(List<String> value) {
+        this.value = value;
     }
-
-
 }

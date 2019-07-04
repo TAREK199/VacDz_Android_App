@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.tarek.vaccins.CheckConnection;
 import com.tarek.vaccins.RetrofitInstance;
 import com.tarek.vaccins.SharedPrefManager;
 import com.tarek.vaccins.home.HomeActivity;
@@ -43,6 +45,9 @@ public class LoginActivity extends AppCompatActivity {
     private String emailChar,passwordChar;
     private SharedPrefManager sharedPrefManager ;
 
+    SwipeRefreshLayout swipeRefreshLayout;
+
+
 
     public static final String CHANNEL_ID = "simplified_coding";
     private static final String CHANNEL_NAME = "Simplified Coding";
@@ -57,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         txtNewAccount = findViewById(R.id.txt_newAccount);
         email = findViewById(R.id.edit_email_login);
         password = findViewById(R.id.edit_password_login);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
 
 
         sharedPrefManager =  new SharedPrefManager(LoginActivity.this);
@@ -69,7 +75,11 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+                if (CheckConnection.haveNetworkConnection(getApplicationContext())) {
+                    login();
+
+                } else {
+                }
             }
         });
         txtNewAccount.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +121,14 @@ public class LoginActivity extends AppCompatActivity {
                                   }
                               }
                           });
+
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
 
@@ -122,12 +140,14 @@ public class LoginActivity extends AppCompatActivity {
             passwordChar = password.getText().toString();
 
 
+
             FatherService fatherService = RetrofitInstance.fatherInstance();
 
             fatherService.fatherLogin(new UserLogin(emailChar, passwordChar)).enqueue(new Callback<LoginResponse>() {
                 @Override
                 public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
+                    swipeRefreshLayout.setRefreshing(true);
 
                     Boolean success = response.body().getSuccess();
 
@@ -152,6 +172,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<LoginResponse> call, Throwable t) {
+                    swipeRefreshLayout.setRefreshing(true);
 
                     Toast.makeText(LoginActivity.this, "problem : " + t.getMessage(), Toast.LENGTH_LONG).show();
                 }

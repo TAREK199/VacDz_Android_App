@@ -74,6 +74,10 @@ public class RdvActivity extends AppCompatActivity {
 
                 Boolean success = response.body().getSuccess() ;
 
+                Toast.makeText(RdvActivity.this,"success "+success,Toast.LENGTH_LONG).show();
+
+                Toast.makeText(RdvActivity.this,"rdvs size  "+response.body().getData().size(),Toast.LENGTH_LONG).show();
+
                 rdvList = new ArrayList<>();
 
                 if (response.body().getData().size()==0) {

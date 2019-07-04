@@ -56,8 +56,6 @@ public class ChildProfileFragment extends Fragment {
                 Boolean success = response.body().getSuccess();
 
 
-
-
                 if (success) {
                     String firstName = response.body().getData().getEnfant().getNom();
                     String lastName = response.body().getData().getEnfant().getPrenom();
@@ -74,8 +72,6 @@ public class ChildProfileFragment extends Fragment {
                     }else {
                         sexeView.setText("Femminin");
                     }
-
-
 
                 }
                 else

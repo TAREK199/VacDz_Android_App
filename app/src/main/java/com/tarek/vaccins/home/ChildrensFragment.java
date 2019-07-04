@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tarek.vaccins.R;
@@ -30,6 +31,7 @@ public class ChildrensFragment extends Fragment {
     private List<Children> childrens ;
     private RecyclerView recyclerView ;
     SharedPrefManager sharedPrefManager ;
+    TextView aucunenfant ;
 
 
     @Nullable
@@ -37,6 +39,7 @@ public class ChildrensFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_childrens,container,false);
 
+        aucunenfant = view.findViewById(R.id.txt_no_children);
 
 
         sharedPrefManager = new SharedPrefManager(getActivity());
@@ -75,6 +78,12 @@ public class ChildrensFragment extends Fragment {
                 if(success){
 
                     childrens = response.body().getData().getEnfants();
+
+if (childrens.size()==0){
+
+    aucunenfant.setVisibility(View.VISIBLE);
+
+}
                     viewData();
 
                 }else{

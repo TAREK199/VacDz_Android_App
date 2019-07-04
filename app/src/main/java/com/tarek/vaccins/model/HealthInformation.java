@@ -3,8 +3,7 @@ package com.tarek.vaccins.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class HealthSpace  {
-
+public class HealthInformation {
 
     @SerializedName("id")
     @Expose
@@ -24,11 +23,6 @@ public class HealthSpace  {
 
     public Integer getId() {
         return id;
-    }
-
-    public HealthSpace(String titre, String txt) {
-        this.titre = titre;
-        this.txt = txt;
     }
 
     public void setId(Integer id) {
@@ -66,22 +60,4 @@ public class HealthSpace  {
     public void setUpdatedAt(Object updatedAt) {
         this.updatedAt = updatedAt;
     }
-/*
-    private String title ;
-    private int image ;
-
-    public HealthSpace(String title, int image) {
-        this.title = title;
-        this.image = image;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public int getImage() {
-        return image;
-    }
-    */
-
 }

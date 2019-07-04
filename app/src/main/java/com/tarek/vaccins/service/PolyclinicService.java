@@ -3,6 +3,7 @@ package com.tarek.vaccins.service;
 
 import com.tarek.vaccins.model.Polyclinic;
 import com.tarek.vaccins.response.PolyclinicResponse;
+import com.tarek.vaccins.response.ProgrammeResponse;
 
 import java.util.List;
 
@@ -18,9 +19,6 @@ public interface PolyclinicService {
 
     @Headers("Accept: application/json")
     @GET("polycliniques")
- //   Call<List<Polyclinic>> getPolycliniques(@Header("Authorization") String token, @Query("commune") int commune_id);
- //   Call<Polyclinic> getPolycliniques(@Header("Authorization") String token,@Body int commune_id);
-
     Call<List<Polyclinic>> getPolycliniques(@Header("Authorization") String token, @Query("commune") String nom);
 
 
@@ -29,4 +27,8 @@ public interface PolyclinicService {
 
     Call<PolyclinicResponse> getPolycliniqueInfo(@Header("Authorization") String token, @Path("id") int id);
 
+
+    @Headers("Accept: application/json")
+    @GET("plans")
+    Call<ProgrammeResponse> getProgrammes(@Header("Authorization") String token,@Query("polyclinique") int polyclinique);
 }

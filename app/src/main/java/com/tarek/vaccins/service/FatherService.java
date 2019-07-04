@@ -9,6 +9,8 @@ import com.tarek.vaccins.response.CommuneResponse;
 import com.tarek.vaccins.response.DeviceTokenResponse;
 import com.tarek.vaccins.response.FatherProfileResponse;
 import com.tarek.vaccins.response.FatherResponse;
+import com.tarek.vaccins.response.HealthInformationResponse;
+import com.tarek.vaccins.response.HealthSpaceResponse;
 import com.tarek.vaccins.response.LoginResponse;
 import com.tarek.vaccins.response.RdvAddResponse;
 import com.tarek.vaccins.response.RdvResponse;
@@ -97,4 +99,12 @@ public interface FatherService {
     @PUT("user/{user_id}/reset")
     Call<UserResponse> updatePassword(@Header("Authorization") String token,@Path("user_id") int id ,@Query("password") String  password);
 
+    @Headers("Accept: application/json")
+    @GET("espacesantes")
+    Call<HealthSpaceResponse> getHealthSpace(@Header("Authorization") String token);
+
+
+    @Headers("Accept: application/json")
+    @GET("espacesantes/{id}")
+    Call<HealthInformationResponse> getHealthInformation(@Header("Authorization") String token,@Path("id") int id);
 }

@@ -39,7 +39,7 @@ public class VaccinationActivity extends AppCompatActivity {
   //  private List<Vaccin> vaccins ;
     private List<Vaccination> vaccinations;
     private ImageView imgFromVaccin ;
-    private Button btnAppointement ;
+    private Button btnAppointement;
     private Dialog dialog ;
     private TextView vaccinationVisit,vaccinationState ;
     private int age,state;
@@ -136,7 +136,7 @@ public class VaccinationActivity extends AppCompatActivity {
                vaccinations = response.body().getData().getVaccinations();
 
                if (response.body().getData().getVaccinations()==null){
-                   Toast.makeText(VaccinationActivity.this,"no vacciantions" ,Toast.LENGTH_LONG).show();
+                   Toast.makeText(VaccinationActivity.this,"pas encore vacciné" ,Toast.LENGTH_LONG).show();
             //       vaccinationState.setVisibility(View.VISIBLE);
 
                }else {

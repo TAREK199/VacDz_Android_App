@@ -15,7 +15,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.tarek.vaccins.R;
-import com.tarek.vaccins.SharedPrefManager;
 import com.tarek.vaccins.model.HealthSpace;
 
 import java.util.List;
@@ -43,15 +42,17 @@ public class HealthSpaceAdapter extends RecyclerView.Adapter<HealthSpaceAdapter.
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolderHealthSpace holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolderHealthSpace holder, final int position) {
 
-        holder.title.setText((CharSequence) healthSpaceList.get(position).getTitle());
-        holder.imageView.setImageAlpha(healthSpaceList.get(position).getImage());
+        holder.title.setText((CharSequence) healthSpaceList.get(position).getTitre());
 
         holder.relative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, VaccinInfosActivity.class));
+
+                Intent intent = new Intent(context, HealthInfoActivity.class);
+                intent.putExtra("health_id", healthSpaceList.get(position).getId());
+                context.startActivity(intent);
             }
         });
     }
