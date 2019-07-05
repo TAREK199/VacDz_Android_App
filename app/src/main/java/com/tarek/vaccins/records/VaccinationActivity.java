@@ -163,34 +163,7 @@ public class VaccinationActivity extends AppCompatActivity {
     }
 
 
-    public void getRdvs(){
 
-        String token = sharedPrefManager.getToken();
-        int id = sharedPrefManager.getIdFather();
-
-        FatherService fatherService = RetrofitInstance.fatherInstance();
-
-        fatherService.getRdvs("Bearer "+token,id).enqueue(new Callback<RdvResponse>() {
-            @Override
-            public void onResponse(Call<RdvResponse> call, Response<RdvResponse> response) {
-
-
-                if (response.body().getData().size()!=0){
-                //    btnAppointement.setVisibility(View.GONE);
-                    Toast.makeText(VaccinationActivity.this,"vous avez deja des rdv",Toast.LENGTH_LONG).show();
-
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(Call<RdvResponse> call, Throwable t) {
-                Toast.makeText(VaccinationActivity.this,"problem : "+t.getMessage(),Toast.LENGTH_LONG).show();
-
-            }
-        });
-    }
     public void getChildrenRdvs(){
 
         String token = sharedPrefManager.getToken() ;
@@ -204,11 +177,9 @@ public class VaccinationActivity extends AppCompatActivity {
 
                 Boolean success = response.body().getSuccess() ;
 
-                Toast.makeText(VaccinationActivity.this,"state "+response.body().getData(),Toast.LENGTH_LONG).show();
-
                 if (response.body().getData().equals("false")){
 
-                    Toast.makeText(VaccinationActivity.this,"deja aw 3ndek whd ",Toast.LENGTH_LONG).show();
+                    Toast.makeText(VaccinationActivity.this,"t'as prie déja un rdv ",Toast.LENGTH_LONG).show();
                      btnAppointement.setVisibility(View.INVISIBLE);
 
 

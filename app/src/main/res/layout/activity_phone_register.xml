@@ -45,6 +45,7 @@
             android:drawablePadding="20dp"
             tools:layout_editor_absoluteX="85dp"
             tools:layout_editor_absoluteY="66dp"
+            android:textCursorDrawable="@drawable/color_cursor"
             />
 
         <TextView

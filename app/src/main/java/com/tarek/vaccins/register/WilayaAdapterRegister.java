@@ -66,7 +66,6 @@ public class WilayaAdapterRegister extends RecyclerView.Adapter<WilayaAdapterReg
             public void onClick(View v) {
                 wilaya_id = mData.get(pos).getId();
 
-                Toast.makeText(context,"wilaya name "+mData.get(pos).getNom(),Toast.LENGTH_LONG).show();
                 showCommune();
             }
         });
@@ -79,8 +78,6 @@ public class WilayaAdapterRegister extends RecyclerView.Adapter<WilayaAdapterReg
     }
 
     public void getCommune(){
-
-        Toast.makeText(context,"wilaya id "+wilaya_id,Toast.LENGTH_LONG).show();
 
         FatherService fatherService = RetrofitInstance.fatherInstance();
 

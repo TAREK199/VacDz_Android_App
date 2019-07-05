@@ -17,6 +17,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="email_invalid">verifier votre email</string>
+    <string name="name_invalid">verifier votre name</string>
+
     <string name="fiels_is_required">verifier votre mot de passe</string>
     <string name="password_length">vueillez introdui un mot de passe plus de 6 caractere</string>
     <string name="password_nomatch">votre mot de passe pas identique</string>

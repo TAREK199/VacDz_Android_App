@@ -3,6 +3,7 @@ package com.tarek.vaccins.service;
 
 import com.tarek.vaccins.model.Rdv;
 import com.tarek.vaccins.model.UserLogin;
+import com.tarek.vaccins.response.AnnulerRdvResponse;
 import com.tarek.vaccins.response.ChildrenResponse;
 import com.tarek.vaccins.model.Father;
 import com.tarek.vaccins.response.CommuneResponse;
@@ -22,6 +23,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -58,6 +60,12 @@ public interface FatherService {
 
     @POST("rdvs")
     Call<RdvAddResponse> prenRdv(@Header("Authorization") String token, @Body Rdv rdv);
+
+
+
+    @Headers("Accept: application/json")
+    @DELETE("rdvs/{id}")
+    Call<AnnulerRdvResponse> annulerRdvs(@Header("Authorization") String token, @Path("id") int id);
 
 
     @Headers("Accept: application/json")

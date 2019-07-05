@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                     login();
 
                 } else {
+                    Toast.makeText(LoginActivity.this,"check your conenction",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -93,10 +94,7 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.txt_forget_password).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //    startActivity(new Intent(LoginActivity.this,TestNotification.class));
                 Toast.makeText(LoginActivity.this,"Soon",Toast.LENGTH_LONG).show();
-          //      finish();return;
-
             }
         });
 
@@ -112,8 +110,6 @@ public class LoginActivity extends AppCompatActivity {
                                       String token = task.getResult().getToken();
 
                                       sharedPrefManager.storeFireBaseToken(token);
-                                   //   Toast.makeText(LoginActivity.this," firebase token is : "+sharedPrefManager.getFireBaseToken(),Toast.LENGTH_LONG).show();
-                                  //    Log.d("my token",token);
 
                                   }else {
                                       Toast.makeText(LoginActivity.this,"error : "+task.getException().getMessage(),Toast.LENGTH_LONG).show();
@@ -152,14 +148,10 @@ public class LoginActivity extends AppCompatActivity {
                     Boolean success = response.body().getSuccess();
 
                     if (success) {
-
-                        Toast.makeText(LoginActivity.this, "is logged in", Toast.LENGTH_LONG).show();
                         sharedPrefManager.fatherLogin(response.body().getData().getPere().getFatherId(),
                                 response.body().getData().getUser().getId(),
                                 response.body().getData().getUser().getEmail(),
                                 response.body().getData().getToken());
-
-
                         startActivity(new Intent(LoginActivity.this, HomeActivity.class));
 
 

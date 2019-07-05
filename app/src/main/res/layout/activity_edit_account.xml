@@ -47,6 +47,7 @@
             android:drawableLeft="@drawable/ic_person_black_24dp"
             android:background="@drawable/ic_edittextstyle"
             android:drawablePadding="20dp"
+            android:textCursorDrawable="@drawable/color_cursor"
 
             />
 
@@ -91,6 +92,8 @@
             android:drawableLeft="@drawable/ic_person_black_24dp"
             android:background="@drawable/ic_edittextstyle"
             android:drawablePadding="20dp"
+            android:textCursorDrawable="@drawable/color_cursor"
+
 
             />
 
@@ -104,7 +107,7 @@
             android:drawableLeft="@drawable/ic_person_black_24dp"
             android:background="@drawable/ic_edittextstyle"
             android:drawablePadding="20dp"
-
+            android:textCursorDrawable="@drawable/color_cursor"
             />
 
     </LinearLayout>

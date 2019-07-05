@@ -31,12 +31,6 @@ public class SettingActivity extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(SettingActivity.this);
 
         email = findViewById(R.id.txt_email_settings);
-/*
-        finish();
-        overridePendingTransition(0, 0);
-        startActivity(getIntent());
-        overridePendingTransition(0, 0);
-*/
 
         findViewById(R.id.img_from_settings).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +48,6 @@ public class SettingActivity extends AppCompatActivity {
                         .setMessage("Are you sure?")
                         .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        // continue with delete
                         sharedPrefManager.logOut();
                         startActivity(new Intent(SettingActivity.this, LoginActivity.class));
                     }
@@ -107,10 +100,27 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-
         String emailChar = sharedPrefManager.getEmail();
         email.setText(emailChar);
+
+
+        findViewById(R.id.linear_language_account).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(SettingActivity.this,"Soon",Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+        findViewById(R.id.linear_bug_account).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(SettingActivity.this,"Soon",Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
+
 
 
 }

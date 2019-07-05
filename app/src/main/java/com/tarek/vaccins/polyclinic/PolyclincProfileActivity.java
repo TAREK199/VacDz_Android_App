@@ -74,7 +74,6 @@ public class PolyclincProfileActivity extends AppCompatActivity {
             }
         });
 
-   //     viewData();
         getInfo();
         getProgramme();
 
@@ -103,7 +102,7 @@ public class PolyclincProfileActivity extends AppCompatActivity {
                 month = month + 1;
                 // Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
 
-                date = year + "-" + month + "-" + "0" + day;//+"T13:34:00.000";
+                date = year + "-" + "0" +month + "-" + "0" + day;//+"T13:34:00.000";
 
                 prendrRdv.setVisibility(View.GONE);
                 confirmeRdv.setVisibility(View.VISIBLE);
@@ -113,7 +112,6 @@ public class PolyclincProfileActivity extends AppCompatActivity {
         confirmeRdv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                takeAppoinment();
 
                 AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(
                         PolyclincProfileActivity.this, R.style.AlertDialogTheme);
@@ -132,7 +130,7 @@ public class PolyclincProfileActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // Write your code here to execute after dialog
-                                takeAppoinment();
+                               takeAppoinment();
                             }
                         });
 
@@ -141,15 +139,11 @@ public class PolyclincProfileActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // Write your code here to execute after dialog
-
                                 dialog.cancel();
                             }
                         });
-
 // Showing Alert Dialog
                 alertDialog2.show();
-
-
             }
         });
     }
@@ -157,16 +151,6 @@ public class PolyclincProfileActivity extends AppCompatActivity {
     public void viewData() {
 
         recyclerView = findViewById(R.id.recycle_profile_poly);
-/*
-        programmes = new ArrayList<>();
-        programmes.add(new Programme(1,"2Mois + 4Mois"));
-        programmes.add(new Programme(2,"1Mois + 3mois"));
-        programmes.add(new Programme(3,"2Mois"));
-        programmes.add(new Programme(4,"2Mois"));
-        programmes.add(new Programme(5,"2Mois"));
-*/
-
-
 
         ProgrammPolyHorizontalAdapter programmPolyHorizontalAdapter = new ProgrammPolyHorizontalAdapter(PolyclincProfileActivity.this, programmes);
         LinearLayoutManager horizontalLayoutManager
@@ -174,7 +158,6 @@ public class PolyclincProfileActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(horizontalLayoutManager);
         recyclerView.setAdapter(programmPolyHorizontalAdapter);
     }
-
     public void getInfo() {
 
         PolyclinicService polyclinicService = RetrofitInstance.polyclinicInstance();
@@ -200,14 +183,13 @@ public class PolyclincProfileActivity extends AppCompatActivity {
             }
         });
     }
-
     public void takeAppoinment() {
 
         int childId = sharedPrefManager.getIdChild();
 
         FatherService fatherService = RetrofitInstance.fatherInstance();
 
-        fatherService.prenRdv("Bearer " + token, new Rdv(childId, polyId, "2019-07-03" + "T08:00:00.000\n")).enqueue(new Callback<RdvAddResponse>() {
+        fatherService.prenRdv("Bearer " + token, new Rdv(childId, polyId, date+ "T08:00:00.000\n")).enqueue(new Callback<RdvAddResponse>() {
             @Override
             public void onResponse(Call<RdvAddResponse> call, Response<RdvAddResponse> response) {
 
@@ -231,8 +213,6 @@ public class PolyclincProfileActivity extends AppCompatActivity {
             }
         });
     }
-
-
     public void getProgramme(){
 
         PolyclinicService polyclinicService = RetrofitInstance.polyclinicInstance() ;

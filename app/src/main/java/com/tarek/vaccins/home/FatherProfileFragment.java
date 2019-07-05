@@ -74,6 +74,8 @@ public class FatherProfileFragment extends Fragment {
 
                 Boolean success = response.body().getSuccess();
 
+                Toast.makeText(getActivity(),"your phone is  "+response.body().getData().getPere().getTel1(),Toast.LENGTH_LONG).show();
+
                 if (success){
                     String firstName = response.body().getData().getPere().getNom();
                     String lastName = response.body().getData().getPere().getPrenom();

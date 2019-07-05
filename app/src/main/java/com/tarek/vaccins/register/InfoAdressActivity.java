@@ -70,7 +70,6 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
 
       if (!check){
           Toast.makeText(InfoAdressActivity.this,"no connection",Toast.LENGTH_LONG).show();
-
       }
 
         sharedPrefManager = new SharedPrefManager(InfoAdressActivity.this);
@@ -86,13 +85,7 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
             @Override
             public void onClick(View v) {
 
-        /*        Intent myIntent = new Intent(InfoAdressActivity.this, RegisterActivity.class);
-                myIntent.putExtra("firstName", firstName);
-                myIntent.putExtra("lastName", lastName);
-                myIntent.putExtra("phoneNumber", phNumber);
-                myIntent.putExtra("email", emailChar);
-                myIntent.putExtra("password", passwordChar);
-                startActivity(myIntent);*/
+
         startActivity(new Intent(InfoAdressActivity.this,RegisterActivity.class));
             }
         });
@@ -138,8 +131,6 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
         email = intent.getStringExtra("email");
         password = intent.getStringExtra("password");
 
-
-
            if (validate()) {
 
                identityNumberChar = identityNumber.getText().toString();
@@ -147,12 +138,7 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
 
                FatherService fatherService = RetrofitInstance.fatherInstance();
 
-         /*      Toast.makeText(InfoAdressActivity.this,email,Toast.LENGTH_LONG).show();
-               Toast.makeText(InfoAdressActivity.this,password,Toast.LENGTH_LONG).show();
-               Toast.makeText(InfoAdressActivity.this, firstName,Toast.LENGTH_LONG).show();
-               Toast.makeText(InfoAdressActivity.this,lastName,Toast.LENGTH_LONG).show();
-               Toast.makeText(InfoAdressActivity.this,phoneNumber,Toast.LENGTH_LONG).show();*/
-               fatherService.register(new Father("1", email, password, firstName, lastName, "0699289437" , "setif", "setif", in)).enqueue(new Callback<FatherResponse>() {
+               fatherService.register(new Father("1", email, password, firstName, lastName, phoneNumber , "setif", "setif", in)).enqueue(new Callback<FatherResponse>() {
 
                    @Override
                    public void onResponse(Call<FatherResponse> call, Response<FatherResponse> response) {
@@ -160,11 +146,7 @@ public class InfoAdressActivity extends AppCompatActivity implements AdapterView
 
                        Boolean succes = response.body().getSuccess();
 
-                       Toast.makeText(InfoAdressActivity.this, "response " + succes, Toast.LENGTH_SHORT).show();
-
                        if (succes) {
-                           Toast.makeText(InfoAdressActivity.this, "success : " + succes, Toast.LENGTH_SHORT).show();
-
                            String token = response.body().getData().getToken();
                            int id = response.body().getData().getFather().getFatherId();
                            int userId = response.body().getData().getUser().getId();

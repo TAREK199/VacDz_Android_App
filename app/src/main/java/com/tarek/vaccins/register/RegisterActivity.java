@@ -46,17 +46,8 @@ public class RegisterActivity extends AppCompatActivity  {
             }
         });
 
-
-      //  Bundle bundle = getIntent().getExtras();
         Intent intent = getIntent();
         phNumber = intent.getExtras().getString("phone");
-        if (phNumber==null) {
-            Toast.makeText(RegisterActivity.this, "my phone in register  : "+phNumber, Toast.LENGTH_LONG).show();
-        }else {
-            Toast.makeText(RegisterActivity.this, "my phone in register is null  ", Toast.LENGTH_LONG).show();
-        }
-
-
     }
 
     public void sendData(){
@@ -93,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity  {
             email.setError(null);
         }
         if (lastName.getText().toString().trim().equals("")) {
-            lastName.setError(getString(R.string.email_invalid));
+            lastName.setError(getString(R.string.name_invalid));
             value = false;
         } else {
             lastName.setError(null);

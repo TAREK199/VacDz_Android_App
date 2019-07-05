@@ -74,16 +74,6 @@ public class PhoneRegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-/*
-                if (TextUtils.isEmpty(mPhoneNumber.getText())){
-              //      if (mPhoneNumber.getText().toString().equals("")){
-              //  if(mPhoneNumber.){
-                        Toast.makeText(PhoneRegisterActivity.this,"pleasse enter phone number",Toast.LENGTH_LONG).show();
-                }else {
-                        Toast.makeText(PhoneRegisterActivity.this,"sahit",Toast.LENGTH_LONG).show();
-                }
-
-*/
                 sendCode(view);
                 linearCode.setVisibility(View.VISIBLE);
 
@@ -114,9 +104,7 @@ public class PhoneRegisterActivity extends AppCompatActivity {
 
     }
 
-
     public void sendCode(View view){
-
 
         String phNumber = mPhoneNumber.getText().toString();
 
@@ -129,7 +117,6 @@ public class PhoneRegisterActivity extends AppCompatActivity {
                 this,
                 verificationCallbacks);
         resendCode.setVisibility(View.VISIBLE);
-     //   Toast.makeText(PhoneRegisterActivity.this,"message send",Toast.LENGTH_LONG).show();
 
     }
 
@@ -160,7 +147,6 @@ public class PhoneRegisterActivity extends AppCompatActivity {
                 if(task.isSuccessful()) {
 
                     phoneNumber = mPhoneNumber.getText().toString();
-                    Toast.makeText(PhoneRegisterActivity.this,"my phone number is "+phoneNumber,Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(PhoneRegisterActivity.this,RegisterActivity.class);
                     intent.putExtra("phone", phoneNumber);
                     startActivity(intent);

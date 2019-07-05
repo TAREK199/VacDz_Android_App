@@ -73,9 +73,6 @@ public class EditAccountActivity extends AppCompatActivity {
 
                 Boolean success = response.body().getSuccess();
 
-                Toast.makeText(EditAccountActivity.this,"rsl "+response.body().getData().getUser().getEmail(),Toast.LENGTH_LONG).show();
-
-
                 sharedPrefManager.storeEmail(response.body().getData().getUser().getEmail());
                 Toast.makeText(EditAccountActivity.this,"votre email est a jour",Toast.LENGTH_LONG).show();
 
@@ -105,7 +102,7 @@ public class EditAccountActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
 
-                Toast.makeText(EditAccountActivity.this,"votre mot de âsse est a jour",Toast.LENGTH_LONG).show();
+                Toast.makeText(EditAccountActivity.this,"votre mot de passe est a jour",Toast.LENGTH_LONG).show();
 
             }
 

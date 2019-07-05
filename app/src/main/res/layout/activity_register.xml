@@ -34,6 +34,8 @@
             android:drawableLeft="@drawable/ic_person_black_24dp"
             android:background="@drawable/ic_edittextstyle"
             android:drawablePadding="20dp"
+            android:textCursorDrawable="@drawable/color_cursor"
+
             />
 
         <EditText
@@ -45,6 +47,8 @@
             android:background="@drawable/ic_edittextstyle"
             android:drawablePadding="20dp"
             android:layout_marginTop="10dp"
+            android:textCursorDrawable="@drawable/color_cursor"
+
             />
 
         <EditText
@@ -56,6 +60,7 @@
             android:drawableLeft="@drawable/ic_mail"
             android:background="@drawable/ic_edittextstyle"
             android:drawablePadding="20dp"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:layout_marginTop="10dp"/>
 
 
@@ -69,6 +74,7 @@
             android:drawableLeft="@drawable/ic_password"
             android:background="@drawable/ic_edittextstyle"
             android:drawablePadding="20dp"
+            android:textCursorDrawable="@drawable/color_cursor"
             android:layout_marginTop="10dp"/>
 
         <EditText

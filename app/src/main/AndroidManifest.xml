@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+
     <application
         android:name=".notification.App"
         android:allowBackup="true"
@@ -13,33 +14,33 @@
         android:roundIcon="@drawable/my_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".records.VaccinInfoActivity"></activity>
-        <activity android:name=".edit.EditAccountActivity" />
-        <activity android:name=".records.WilayaActivity" />
-        <activity android:name=".NotificationHelper" />
-        <activity android:name=".home.HealthInfoActivity" />
-        <activity android:name=".home.SettingActivity" />
-        <activity android:name=".home.RdvActivity" />
-        <activity android:name=".edit.EditFatherProfile" />
-        <activity android:name=".register.PhoneRegisterActivity" />
-        <activity android:name=".polyclinic.PolyclincProfileActivity" />
-        <activity android:name=".notification.TestNotification" />
-        <activity android:name=".polyclinic.PolyclinicActivity" />
-        <activity android:name=".records.VaccinationActivity" />
-        <activity android:name=".records.RecordsActivity" />
-        <activity android:name=".register.InfoAdressActivity" />
-        <activity android:name=".register.RegisterActivity" />
-        <activity android:name=".login.LoginActivity" />
-        <activity android:name=".login.SplashActivity"></activity>
-        <activity android:name=".register.WelcomeActivity" />
-        <activity android:name=".register.IntroActivity">
+        <activity android:name=".records.VaccinInfoActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".edit.EditAccountActivity" android:screenOrientation="portrait" />
+        <activity android:name=".records.WilayaActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".NotificationHelper" android:screenOrientation="portrait"/>
+        <activity android:name=".home.HealthInfoActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".home.SettingActivity" android:screenOrientation="portrait" />
+        <activity android:name=".home.RdvActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".edit.EditFatherProfile" android:screenOrientation="portrait"/>
+        <activity android:name=".register.PhoneRegisterActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".polyclinic.PolyclincProfileActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".notification.TestNotification" android:screenOrientation="portrait"/>
+        <activity android:name=".polyclinic.PolyclinicActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".records.VaccinationActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".records.RecordsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".register.InfoAdressActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".register.RegisterActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".login.LoginActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".login.SplashActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".register.WelcomeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".register.IntroActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.HomeActivity" />
+        <activity android:name=".home.HomeActivity" android:screenOrientation="portrait" />
 
         <receiver android:name=".notification.NotificationReceiver" />
 
